@@ -30,10 +30,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route element={<HomeLayout />}>
-          <Route path="home" element={<Home />} />
-          <Route path="about" element={<AboutUs />} />
-          <Route path="terms" element={<Terms />} />
-          <Route path="privacy" element={<PrivacyPolicy />} />
+          <Route path="home" element={<div>Home</div>} />
+          <Route path="about" element={<div>Home</div>} />
+          <Route path="terms" element={<div>Home</div>} />
+          <Route path="privacy" element={<div>Home</div>} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot-password" element={<ForgotPassword />} />
