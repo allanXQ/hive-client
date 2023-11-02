@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #0d7cf2;
+}
+
+.css-10f6mdy-MuiFormControl-root-MuiTextField-root .MuiInputBase-input {
+  /* color: white; */
+  background-color: transparent;
+}
