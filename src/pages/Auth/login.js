@@ -9,11 +9,11 @@ import Auth from "./auth";
 const Login = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/dashboard");
-    }
-  }, [isLoggedIn, navigate]);
+  // useEffect(() => {
+  //   if (isLoggedIn) {
+  //     navigate("/dashboard");
+  //   }
+  // }, [isLoggedIn, navigate]);
   const sublink = {
     pathname: "/register",
     sublinkText: "Sign Up",
