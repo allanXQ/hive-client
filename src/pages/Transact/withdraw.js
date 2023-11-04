@@ -29,7 +29,7 @@ const Withdrawal = () => {
           gap: "0.3rem",
         }}
       >
-        <Typography variant="caption">© 2023 Verdant</Typography>
+        <Typography variant="caption">© 2023 Hive</Typography>
       </Box>
     </Box>
   );

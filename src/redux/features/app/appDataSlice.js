@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   klineInterval: "1h",
-  activeAsset: "verdant",
+  activeAsset: "Hive",
   klineIntervals: [],
   assets: [],
   p2pTrades: [],

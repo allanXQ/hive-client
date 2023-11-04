@@ -23,7 +23,7 @@ const termsAndConditions = [
         list: [
           `"Affiliate" means an entity that controls, is controlled by, or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest, or other securities entitled to vote for the election of directors or other managing authority.`,
           `"Service" refers to the platform.`,
-          `"Terms and Conditions" (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and Verdant Capital regarding the use of the Service.`,
+          `"Terms and Conditions" (also referred as "Terms") mean these Terms and Conditions that form the entire agreement between You and Hive Capital regarding the use of the Service.`,
           `"User" or "You" refers to the inBoxidual accessing or using the Service, or the company, or other legal entity on behalf of which such inBoxidual is accessing or using the Service, as applicable.`,
         ],
       },
@@ -49,7 +49,7 @@ const termsAndConditions = [
   {
     title: "Limitation of Liability",
     description:
-      "To the maximum extent permitted by applicable law, Verdant Capital shall not be liable for any indirect, punitive, incidental, special, consequential, or exemplary damages.",
+      "To the maximum extent permitted by applicable law, Hive Capital shall not be liable for any indirect, punitive, incidental, special, consequential, or exemplary damages.",
   },
   {
     title: "Governing Law",

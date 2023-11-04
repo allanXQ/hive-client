@@ -7,7 +7,7 @@ const AboutUs = () => {
       title: "Who We Are",
       subtitle: "Beyond Just Trading: We're a Movement",
       description:
-        "At Verdant Capital, we represent more than just a digital platform; we signify a transformative shift in the OTC trading sphere. Established with a clear vision to reshape and streamline the complexities of over-the-counter trading, we harmoniously fuse cutting-edge technology with an empathetic understanding of our users' needs. As we continue to grow, we are proud to shine a light on the intricate world of OTC trading, guiding traders from all corners of the globe towards informed decisions and brighter financial futures.",
+        "At Hive Capital, we represent more than just a digital platform; we signify a transformative shift in the OTC trading sphere. Established with a clear vision to reshape and streamline the complexities of over-the-counter trading, we harmoniously fuse cutting-edge technology with an empathetic understanding of our users' needs. As we continue to grow, we are proud to shine a light on the intricate world of OTC trading, guiding traders from all corners of the globe towards informed decisions and brighter financial futures.",
       imagePath: "/img/aboutus.jpeg",
       width: 2000,
     },
@@ -25,7 +25,7 @@ const AboutUs = () => {
       imagePath: "/img/journey.jpeg",
       width: 2000,
       description:
-        "Initiated in the year 2000 under the visionary leadership of Christian Bale, Verdant Capital emerged from a spark of passion and innovation. As we journey through time, our platform boasts of an ever-expanding user base spanning across 100 countries, a testament to our innovative spirit, unwavering commitment, and the deep-rooted trust we've cultivated within our community. Be it the meticulous market analyses at the break of dawn or the tireless coding endeavors deep into the night, every nuance of Verdant Capital epitomizes our relentless pursuit of excellence.",
+        "Initiated in the year 2000 under the visionary leadership of Christian Bale, Hive Capital emerged from a spark of passion and innovation. As we journey through time, our platform boasts of an ever-expanding user base spanning across 100 countries, a testament to our innovative spirit, unwavering commitment, and the deep-rooted trust we've cultivated within our community. Be it the meticulous market analyses at the break of dawn or the tireless coding endeavors deep into the night, every nuance of Hive Capital epitomizes our relentless pursuit of excellence.",
     },
   ];
 
@@ -193,12 +193,12 @@ const AboutUs = () => {
           Join Us On Our Journey
         </Typography>
         <Typography variant="bodySmallBold" sx={{ textAlign: "center" }}>
-          Be Part of the Verdant Capital Story
+          Be Part of the Hive Capital Story
         </Typography>
         <Typography variant="bodyRegular" sx={{ textAlign: "center" }}>
           As we continue to break barriers and set new benchmarks, we invite you
-          to be a part of our story. Trade, learn, and grow with Verdant Capital
-          — where every trader finds a home.
+          to be a part of our story. Trade, learn, and grow with Hive Capital —
+          where every trader finds a home.
         </Typography>
       </Grid>
     </Grid>

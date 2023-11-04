@@ -9,7 +9,7 @@ const PrivacyPolicy = () => {
       }}
     >
       <Typography variant="h4" gutterBottom>
-        Privacy Policy for Verdant Capital
+        Privacy Policy for Hive Capital
       </Typography>
 
       <Typography variant="bodyRegular" paragraph>
@@ -19,7 +19,7 @@ const PrivacyPolicy = () => {
       <Box my={3}>
         <Typography variant="h6">Introduction</Typography>
         <Typography variant="bodyRegular" paragraph>
-          At Verdant Capital, we are committed to protecting the privacy of our
+          At Hive Capital, we are committed to protecting the privacy of our
           users. This Privacy Policy outlines the types of information we
           collect, how we use it, and the measures we take to safeguard it.
         </Typography>
@@ -86,7 +86,7 @@ const PrivacyPolicy = () => {
         <Typography variant="h6">Contact Us</Typography>
         <Typography variant="bodyRegular" paragraph>
           If you have any questions about this Privacy Policy, you can contact
-          us at: privacy@verdantcapital.com
+          us at: privacy@Hivecapital.com
         </Typography>
       </Box>
     </Container>

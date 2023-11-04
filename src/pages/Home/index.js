@@ -105,10 +105,10 @@ const Home = () => {
           </Typography>
           <Typography variant="bodyRegular">
             Dive deep into the intricate and lucrative world of over-the-counter
-            (OTC) stocks with Verdant Capital. As your steadfast and
-            knowledgeable partner, we offer unparalleled guidance, tools, and
-            insights, empowering you to navigate the ever-evolving landscape of
-            the OTC markets with ease, confidence, and sophistication.
+            (OTC) stocks with Hive Capital. As your steadfast and knowledgeable
+            partner, we offer unparalleled guidance, tools, and insights,
+            empowering you to navigate the ever-evolving landscape of the OTC
+            markets with ease, confidence, and sophistication.
           </Typography>
           <Box>
             <MuiButton
@@ -150,8 +150,8 @@ const Home = () => {
             Jumpstart your OTC portfolio today
           </Typography>
           <Typography variant="bodyRegular">
-            Verdant Capital has a variety of features that make it the best
-            place to start trading
+            Hive Capital has a variety of features that make it the best place
+            to start trading
           </Typography>
         </Box>
         <Box
