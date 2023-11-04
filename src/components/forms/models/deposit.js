@@ -10,7 +10,7 @@ const DepositModel = {
   fields: [
     {
       name: "phone",
-      type: "text",
+      type: "number",
       label: "Mpesa number",
       placeholder: "2547...",
       required: true,
