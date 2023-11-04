@@ -10,7 +10,7 @@ const DepositModel = {
   fields: [
     {
       name: "phone",
-      type: "string",
+      type: "text",
       label: "Mpesa number",
       placeholder: "2547...",
       required: true,
@@ -19,7 +19,7 @@ const DepositModel = {
       name: "amount",
       type: "number",
       label: "Amount",
-      placeholder: "min 10",
+      placeholder: "min 100",
       required: true,
     },
   ],
