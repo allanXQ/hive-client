@@ -28,7 +28,7 @@ const Dashboard = React.memo(() => {
   const stats = [
     {
       name: "Balance",
-      value: userData?.balance,
+      value: userData?.accountBalance,
     },
   ];
 
