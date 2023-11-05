@@ -1,8 +1,4 @@
 import {
-  KeyboardArrowDownOutlined,
-  KeyboardArrowUpOutlined,
-} from "@mui/icons-material";
-import {
   Box,
   Card,
   CardActionArea,
@@ -10,35 +6,10 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import useAssetsData from "Hooks/useAssets";
 import useUserData from "Hooks/useUserData";
 import { MuiButton } from "components/common/Button";
 import MUIDataGrid from "components/common/Datagrid";
 import React from "react";
-import { useNavigate } from "react-router-dom";
-
-const stats = [
-  {
-    name: "Balance",
-    value: "100",
-    percentageChange: 10,
-  },
-  {
-    name: "Portfolio",
-    value: "1000",
-    percentageChange: 10,
-  },
-  {
-    name: "Trades",
-    value: "1000",
-    percentageChange: 10,
-  },
-  {
-    name: "Total Profit",
-    value: "750",
-    percentageChange: -10,
-  },
-];
 
 const columns = [
   { field: "Gateway", headerName: "Gateway", width: 200 },
@@ -53,6 +24,13 @@ const overviewWidth = `calc(100vw - 200px)`;
 
 const Dashboard = React.memo(() => {
   const userData = useUserData();
+
+  const stats = [
+    {
+      name: "Balance",
+      value: userData?.balance,
+    },
+  ];
 
   const rows =
     Array.isArray(userData?.deposits) &&
@@ -140,43 +118,6 @@ const Dashboard = React.memo(() => {
                   }}
                 >
                   <Typography variant="bodyRegular">{stat.name}</Typography>
-                  <Box>
-                    {stat.percentageChange > 0 ? (
-                      <Typography
-                        variant="bodySmall"
-                        color="green.main"
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.1rem",
-                        }}
-                      >
-                        <KeyboardArrowUpOutlined
-                          sx={{
-                            fontSize: "1rem",
-                          }}
-                        />
-                        +{stat.percentageChange}%
-                      </Typography>
-                    ) : (
-                      <Typography
-                        variant="bodySmall"
-                        color="red.main"
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "0.1rem",
-                        }}
-                      >
-                        <KeyboardArrowDownOutlined
-                          sx={{
-                            fontSize: "1rem",
-                          }}
-                        />
-                        -{stat.percentageChange}%
-                      </Typography>
-                    )}
-                  </Box>
                 </Box>
                 <Typography variant="h6" fontWeight="bold">
                   KSH {stat.value}
@@ -202,7 +143,7 @@ const Dashboard = React.memo(() => {
                 maxHeight: "20px",
               }}
             >
-              <Typography variant="bodyLarge">Assets</Typography>
+              <Typography variant="bodyLarge">Deposits</Typography>
               <MuiButton
                 variant="text"
                 sx={{
