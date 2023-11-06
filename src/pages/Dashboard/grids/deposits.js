@@ -7,7 +7,7 @@ const Deposits = () => {
 
   const columns = useMemo(() => [
     { field: "Gateway", headerName: "Gateway", width: 100 },
-    { field: "ReferenceNumber", headerName: "Reference Number", width: 180 },
+    { field: "ReferenceNumber", headerName: "Reference Number", width: 150 },
     { field: "AccountNumber", headerName: "Accout Number", width: 150 },
     { field: "Amount", headerName: "Amount", width: 100 },
     { field: "Status", headerName: "Status", width: 100 },

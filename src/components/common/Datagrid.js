@@ -60,6 +60,7 @@ const MUIDataGrid = ({ title, rows, columns, height, width }) => {
       <Typography variant="h6">{title}</Typography>
       <Box
         sx={{
+          //100vw/100vh on small screens
           height: "fit-content", //height || 390,
           width: "fit-content", //width || calculatedWidth,
         }}

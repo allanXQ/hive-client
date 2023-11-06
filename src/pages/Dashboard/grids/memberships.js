@@ -33,7 +33,7 @@ const ActionButton = memo(({ chama }) => {
 
   return (
     <MuiButton
-      variant="contained"
+      variant="text"
       onClick={() => navigate(`/${chama}/dashboard`)}
       content="View"
     />
