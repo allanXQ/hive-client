@@ -26,7 +26,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme, currentTheme }) => ({
         : theme.palette.bgColor.light,
   },
   "& .MuiDataGrid-columnHeaderTitle": {
-    ...theme.typography.bodySmallBold,
+    ...theme.typography.bodySmall,
     color:
       currentTheme === "light"
         ? theme.palette.bgColor.dark
@@ -57,11 +57,11 @@ const MUIDataGrid = ({ title, rows, columns, height, width }) => {
 
   return (
     <Box>
-      <Typography variant="h5">{title}</Typography>
+      <Typography variant="h6">{title}</Typography>
       <Box
         sx={{
           height: "fit-content", //height || 390,
-          width: width || calculatedWidth,
+          width: "fit-content", //width || calculatedWidth,
         }}
       >
         <StyledDataGrid

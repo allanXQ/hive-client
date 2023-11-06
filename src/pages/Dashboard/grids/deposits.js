@@ -6,11 +6,11 @@ const Deposits = () => {
   const userData = useUserData();
 
   const columns = useMemo(() => [
-    { field: "Gateway", headerName: "Gateway", width: 200 },
-    { field: "ReferenceNumber", headerName: "Reference Number", width: 200 },
-    { field: "AccountNumber", headerName: "Accout Number", width: 200 },
-    { field: "Amount", headerName: "Amount", width: 200 },
-    { field: "Status", headerName: "Status", width: 150 },
+    { field: "Gateway", headerName: "Gateway", width: 100 },
+    { field: "ReferenceNumber", headerName: "Reference Number", width: 180 },
+    { field: "AccountNumber", headerName: "Accout Number", width: 150 },
+    { field: "Amount", headerName: "Amount", width: 100 },
+    { field: "Status", headerName: "Status", width: 100 },
     { field: "Date", headerName: "Date", width: 200 },
   ]);
 
