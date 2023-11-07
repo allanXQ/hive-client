@@ -6,9 +6,9 @@ import { useSelector } from "react-redux";
 import { selectTheme } from "redux/features/app/configSlice";
 
 const StyledDataGrid = styled(DataGrid)(({ theme, currentTheme }) => ({
-  [theme.breakpoints.down("sm")]: {
-    paddingRight: "35px",
-  },
+  // [theme.breakpoints.down("sm")]: {
+  //   paddingRight: "35px",
+  // },
 
   "& .MuiDataGrid-root": {},
 
@@ -26,7 +26,7 @@ const StyledDataGrid = styled(DataGrid)(({ theme, currentTheme }) => ({
         : theme.palette.bgColor.light,
   },
   "& .MuiDataGrid-columnHeaderTitle": {
-    ...theme.typography.bodySmall,
+    ...theme.typography.bodySmallBold,
     color:
       currentTheme === "light"
         ? theme.palette.bgColor.dark
@@ -41,10 +41,11 @@ const StyledDataGrid = styled(DataGrid)(({ theme, currentTheme }) => ({
         : theme.palette.bgColor.light,
     display: "flex",
     alignItems: "center",
+    height: "20px",
   },
 }));
 
-const MUIDataGrid = ({ title, rows, columns, height, width }) => {
+const MUIDataGrid = ({ rows, columns, height, width }) => {
   const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   if (isSmallScreen) {
     columns.forEach((column) => {
@@ -57,12 +58,11 @@ const MUIDataGrid = ({ title, rows, columns, height, width }) => {
 
   return (
     <Box>
-      <Typography variant="h6">{title}</Typography>
       <Box
         sx={{
           //100vw/100vh on small screens
           height: "fit-content", //height || 390,
-          width: "fit-content", //width || calculatedWidth,
+          width: width || calculatedWidth,
         }}
       >
         <StyledDataGrid

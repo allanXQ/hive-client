@@ -1,3 +1,4 @@
+import { Box, Typography } from "@mui/material";
 import useUserData from "Hooks/useUserData";
 import MUIDataGrid from "components/common/Datagrid";
 import React, { useMemo } from "react";
@@ -28,12 +29,16 @@ const Deposits = () => {
       };
     });
   return (
-    <MUIDataGrid
-      title="Recent Deposits"
-      rows={rows}
-      columns={columns}
-      width={240}
-    />
+    // <Box
+    //   sx={{
+    //     display: "flex",
+    //     flexDirection: "column",
+    //     gap: 1,
+    //   }}
+    // >
+    // {/* <Typography variant="h6">Recent Deposits</Typography> */}
+    <MUIDataGrid rows={rows} columns={columns} />
+    // {/* </Box> */}
   );
 };
 

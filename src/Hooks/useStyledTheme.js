@@ -88,8 +88,8 @@ const useStyledTheme = () => {
         fontWeight: 400,
       },
       bodySmallBold: {
-        fontSize: "0.9rem",
-        fontWeight: 700,
+        fontSize: "0.833rem",
+        fontWeight: 600,
       },
     },
   });

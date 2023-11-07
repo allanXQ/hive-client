@@ -1,39 +1,51 @@
-import { Grid } from "@mui/material";
-import useUserData from "Hooks/useUserData";
+import { Box } from "@mui/material";
 import React from "react";
 import Memberships from "./grids/memberships";
 import Deposits from "./grids/deposits";
+import Contributions from "./charts/contributions";
+import Overview from "./overview";
 
-const overviewWidth = `calc(100vw - 200px)`;
+const overviewWidth = `calc(100vw-200px)`;
+const chartsWidth = `calc(100vw - ${overviewWidth})`;
 
 const Dashboard = React.memo(() => {
-  const userData = useUserData();
-
-  const stats = [
-    {
-      name: "Balance",
-      value: userData?.accountBalance,
-    },
-  ];
-
-  const cardStyle = {
-    display: "flex",
-    flexDirection: "column",
-    width: {
-      xs: "100vw",
-      sm: `calc(${overviewWidth})`,
-    },
-    border: "none",
-    boxShadow: "none",
-    backgroundColor: "transparent",
-  };
   return (
-    <Grid container spacing={1}>
-      <Grid item>
-        <Memberships />
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "row",
+        paddingTop: 2,
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 5,
+          width: {
+            xs: "100vw",
+            md: `calc(${overviewWidth})`,
+          },
+          border: "0.5px solid gray",
+          padding: 2,
+        }}
+      >
+        <Overview />
         <Deposits />
-      </Grid>
-    </Grid>
+      </Box>
+      {/* <Box
+        sx={{
+          width: chartsWidth,
+          display: "flex",
+          padding: 2,
+        }}
+      >
+        <Memberships /> 
+
+        <Contributions />
+      </Box>
+      */}
+    </Box>
   );
 });
 
