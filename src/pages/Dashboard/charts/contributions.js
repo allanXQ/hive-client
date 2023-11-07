@@ -63,9 +63,9 @@ const Contributions = () => {
           return label + "\n" + value;
         },
       },
-      legend: {
-        display: false,
-      },
+      // legend: {
+      //   display: false,
+      // },
     },
   };
 
@@ -84,7 +84,7 @@ const Contributions = () => {
       <Typography variant="h6">Contributions</Typography>
       <Box
         sx={{
-          width: "20vw",
+          width: "15vw",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

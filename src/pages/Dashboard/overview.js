@@ -40,6 +40,7 @@ const Overview = () => {
           flexWrap: "wrap",
           flexGrow: 1,
           flexFlow: "row wrap",
+          width: "inherit",
         }}
       >
         {stats.map((stat) => (
