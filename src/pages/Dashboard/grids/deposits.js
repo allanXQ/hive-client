@@ -29,16 +29,17 @@ const Deposits = () => {
       };
     });
   return (
-    // <Box
-    //   sx={{
-    //     display: "flex",
-    //     flexDirection: "column",
-    //     gap: 1,
-    //   }}
-    // >
-    // {/* <Typography variant="h6">Recent Deposits</Typography> */}
-    <MUIDataGrid rows={rows} columns={columns} />
-    // {/* </Box> */}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 1,
+        overflow: "auto",
+      }}
+    >
+      <Typography variant="h6">Recent Deposits</Typography>
+      <MUIDataGrid rows={rows} columns={columns} />
+    </Box>
   );
 };
 
