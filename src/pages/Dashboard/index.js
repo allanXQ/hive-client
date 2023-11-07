@@ -5,7 +5,7 @@ import Deposits from "./grids/deposits";
 import Contributions from "./charts/contributions";
 import Overview from "./overview";
 
-const overviewWidth = `calc(100vw-200px)`;
+const overviewWidth = `calc(100vw - 205px)`;
 const chartsWidth = `calc(100vw - ${overviewWidth})`;
 
 const Dashboard = React.memo(() => {
@@ -24,7 +24,7 @@ const Dashboard = React.memo(() => {
           gap: 5,
           width: {
             xs: "100vw",
-            md: `calc(${overviewWidth})`,
+            sm: overviewWidth,
           },
           border: "0.5px solid gray",
           padding: 2,
