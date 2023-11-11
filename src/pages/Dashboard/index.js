@@ -5,7 +5,7 @@ import Deposits from "./grids/deposits";
 import Contributions from "./charts/contributions";
 import Overview from "./overview";
 
-const overviewWidth = `calc(100vw - 205px)`;
+const overviewWidth = `calc(100vw - 220px)`;
 const chartsWidth = `calc(100vw - ${overviewWidth})`;
 
 const Dashboard = React.memo(() => {
@@ -13,6 +13,7 @@ const Dashboard = React.memo(() => {
     <Box
       sx={{
         display: "flex",
+        // flexWrap: "wrap",
         flexDirection: "row",
         paddingTop: 2,
       }}
@@ -33,18 +34,17 @@ const Dashboard = React.memo(() => {
         <Overview />
         <Deposits />
       </Box>
-      {/* <Box
+      <Box
         sx={{
           width: chartsWidth,
           display: "flex",
           padding: 2,
         }}
       >
-        <Memberships /> 
+        <Memberships />
 
-        <Contributions />
+        {/* <Contributions /> */}
       </Box>
-      */}
     </Box>
   );
 });

@@ -3,6 +3,8 @@ import useUserData from "Hooks/useUserData";
 import MUIDataGrid from "components/common/Datagrid";
 import React, { useMemo } from "react";
 
+const overviewWidth = `calc(100vw - 320px)`;
+
 const Deposits = () => {
   const userData = useUserData();
 
@@ -38,7 +40,7 @@ const Deposits = () => {
       }}
     >
       <Typography variant="h6">Recent Deposits</Typography>
-      <MUIDataGrid rows={rows} columns={columns} />
+      <MUIDataGrid rows={rows} columns={columns} width={overviewWidth} />
     </Box>
   );
 };
