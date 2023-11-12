@@ -1,11 +1,67 @@
 import { Box, Typography, Divider, Button, useTheme } from "@mui/material";
 import { MuiButton } from "components/common/Button";
+import { signInWithPopup } from "firebase/auth";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import getGoogleOAuthUrl from "utils/googleOAuthUrl";
+import { apiCall } from "redux/async/asyncThunk";
+import { loginSuccess } from "redux/features/user/userSlice";
+import { firebaseAuth, firebaseAuthProvider } from "utils/firebase";
+// import GoogleSignIn from "utils/googleAuth";
 
 const GoogleSignup = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
+
+  const GoogleSignIn = () => {
+    signInWithPopup(firebaseAuth, firebaseAuthProvider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access Google APIs.
+        const providerId = result.providerId;
+        const { accessToken, displayName, email, photoURL, phoneNumber } =
+          result.user;
+
+        const firstName = displayName.split(" ")[0];
+        const lastName = displayName.split(" ")[1];
+
+        dispatch(
+          apiCall({
+            endpoint: "auth/google",
+            method: "POST",
+            data: {
+              providerId,
+              accessToken,
+              firstName,
+              lastName,
+              email,
+              photoURL,
+              phoneNumber,
+            },
+            slice: "userData",
+          })
+        ).then((res) => {
+          dispatch(
+            loginSuccess({
+              ...res.payload.data,
+            })
+          );
+        });
+      })
+
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        const credential = error.credential;
+        // ...
+
+        console.log(errorCode, errorMessage);
+      });
+  };
+
   return (
     <>
       <Divider
@@ -28,7 +84,7 @@ const GoogleSignup = () => {
         <MuiButton
           variant="contained"
           color="primary"
-          href={getGoogleOAuthUrl()}
+          onClick={GoogleSignIn}
           sx={{
             position: "relative",
             width: "20rem",
