@@ -7,8 +7,8 @@ const Deposit = () => {
   const overviewWidth = isSm
     ? "100vw"
     : isXl
-    ? `calc(100vw - 200px)`
-    : `calc(100vw - 200px)`;
+    ? `calc(100vw - 220px)`
+    : `calc(100vw - 220px)`;
   return (
     <Box
       sx={{
@@ -17,12 +17,19 @@ const Deposit = () => {
         alignItems: "center",
         justifyContent: "center",
         gap: "1rem",
-        height: "100vh",
+        height: "89vh",
         width: overviewWidth,
       }}
     >
       <Stack direction={isMd ? "column" : "row"} spacing={4}>
-        <Box sx={{ flexGrow: 1 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+            width: 400,
+          }}
+        >
           <Typography variant="h6">Instructions</Typography>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
             <Typography variant="bodySmall">
