@@ -6,23 +6,26 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Link, useLocation } from "react-router-dom";
 import {
-  AccountBalanceOutlined as AccountBalance,
-  CalculateOutlined as Calculate,
-  ChatOutlined as Chat,
-  DashboardOutlined as Dashboard,
+  AccountBalanceOutlined,
+  CalculateOutlined,
+  ChatOutlined,
+  CreditScoreOutlined,
+  CurrencyExchangeOutlined,
+  DashboardOutlined,
   ExpandLess,
   ExpandMore,
-  HistoryOutlined as History,
-  LogoutOutlined as Logout,
+  HistoryOutlined,
+  LogoutOutlined,
   Mail,
-  PaymentOutlined as Payment,
-  PersonOutlined as Person,
-  PointOfSaleOutlined as PointOfSale,
-  ReceiptOutlined as Receipt,
-  RedeemOutlined as Redeem,
-  RequestPageOutlined as RequestPage,
-  RequestQuoteOutlined as RequestQuote,
-  ShowChartOutlined as ShowChart,
+  ManageAccountsOutlined,
+  PaidOutlined,
+  PaymentOutlined,
+  PaymentsOutlined,
+  PeopleAltOutlined,
+  PersonOutlineOutlined,
+  RedeemOutlined,
+  RequestQuoteOutlined,
+  SavingsOutlined,
 } from "@mui/icons-material";
 import {
   Avatar,
@@ -62,7 +65,7 @@ function ResponsiveDrawer(props) {
 
   const currentpath = useLocation().pathname;
 
-  const iconColor = {
+  const iconStyle = {
     color:
       currentTheme === "light"
         ? theme.palette.bgColor.dark
@@ -72,71 +75,96 @@ function ResponsiveDrawer(props) {
   const navlinks = [
     {
       name: "Dashboard",
-      icon: <Dashboard sx={iconColor} />,
+      icon: <DashboardOutlined sx={iconStyle} />,
       path: "/dashboard",
     },
     {
       name: "Profile",
-      icon: <Person sx={iconColor} />,
+      icon: <ManageAccountsOutlined sx={iconStyle} />,
       path: "/profile",
     },
     {
       name: "Transact",
-      icon: <PointOfSale sx={iconColor} />,
+      icon: <CurrencyExchangeOutlined sx={iconStyle} />,
       submenu: [
         {
           name: "Deposit",
-          icon: <AccountBalance sx={iconColor} />,
+          icon: <AccountBalanceOutlined sx={iconStyle} />,
           path: "/transact/deposit",
         },
         {
           name: "Withdraw",
-          icon: <Redeem sx={iconColor} />,
+          icon: <RedeemOutlined sx={iconStyle} />,
           path: "/transact/withdraw",
         },
         {
-          name: "Request Loan",
-          icon: <RequestQuote sx={iconColor} />,
+          name: "Contribute",
+          icon: <SavingsOutlined sx={iconStyle} />,
+          path: "/transact/contribute",
+        },
+        {
+          name: "Loan Request",
+          icon: <RequestQuoteOutlined sx={iconStyle} />,
           path: "/transact/request-loan",
         },
         {
           name: "Pay Loan",
-          icon: <Payment sx={iconColor} />,
+          icon: <PaymentOutlined sx={iconStyle} />,
           path: "/transact/pay-loan",
         },
       ],
     },
     {
+      name: "Memberships",
+      icon: <PeopleAltOutlined sx={iconStyle} />,
+      path: "/memberships",
+    },
+    {
       name: "Loan Calculator",
-      icon: <Calculate sx={iconColor} />,
+      icon: <CalculateOutlined sx={iconStyle} />,
       path: "/loan-calculator",
     },
     {
       name: "Conversations",
-      icon: <Chat sx={iconColor} />,
-      path: "/Conversations",
+      icon: <ChatOutlined sx={iconStyle} />,
+      path: "/conversations",
       badge: 4,
     },
     {
       name: "History",
-      icon: <History sx={iconColor} />,
+      icon: <HistoryOutlined sx={iconStyle} />,
       submenu: [
         {
           name: "Deposits",
-          icon: <Receipt sx={iconColor} />,
+          icon: <PaymentsOutlined sx={iconStyle} />,
           path: "/history/deposits",
         },
         {
           name: "Withdrawals",
-          icon: <Receipt sx={iconColor} />,
+          icon: <RedeemOutlined sx={iconStyle} />,
           path: "/history/withdrawals",
+        },
+        {
+          name: "Contributionss",
+          icon: <PaidOutlined sx={iconStyle} />,
+          path: "/history/contributions",
+        },
+        {
+          name: "Loan Requests",
+          icon: <RequestQuoteOutlined sx={iconStyle} />,
+          path: "/history/loan-requests",
+        },
+        {
+          name: "Loan Payments",
+          icon: <CreditScoreOutlined sx={iconStyle} />,
+          path: "/history/loan-payments",
         },
       ],
     },
 
     {
       name: "Logout",
-      icon: <Logout sx={iconColor} />,
+      icon: <LogoutOutlined sx={iconStyle} />,
       path: "/logout",
     },
   ];
@@ -156,25 +184,31 @@ function ResponsiveDrawer(props) {
             >
               <ListItemIcon
                 sx={{
-                  minWidth: 35,
+                  minWidth: 40,
                 }}
               >
                 {item.icon}
               </ListItemIcon>
               <ListItemText>
-                <Typography variant="bodyRegular">{item.name}</Typography>
+                <Typography variant="bodySmall">{item.name}</Typography>
               </ListItemText>
               {item.submenu ? (
                 openSubMenu === index ? (
-                  <ExpandLess sx={iconColor} />
+                  <ExpandLess sx={iconStyle} />
                 ) : (
-                  <ExpandMore sx={iconColor} />
+                  <ExpandMore sx={iconStyle} />
                 )
               ) : null}
             </ListItem>
             {item.submenu && (
               <Collapse in={openSubMenu === index} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
+                <List
+                  component="div"
+                  disablePadding
+                  sx={{
+                    marginLeft: 2,
+                  }}
+                >
                   {item.submenu.map((subitem, subindex) => (
                     <ListItem key={subindex} disablePadding>
                       <ListItemButton component={Link} to={subitem.path}>
@@ -185,7 +219,7 @@ function ResponsiveDrawer(props) {
                         >
                           {subitem.icon}
                         </ListItemIcon>
-                        <Typography variant="bodyRegular">
+                        <Typography variant="bodySmall">
                           {subitem.name}
                         </Typography>
                       </ListItemButton>
@@ -254,7 +288,7 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: "none" } }}
           >
-            <MenuIcon sx={iconColor} />
+            <MenuIcon sx={iconStyle} />
           </IconButton>
           <Box
             sx={{
@@ -302,7 +336,7 @@ function ResponsiveDrawer(props) {
               />
               <IconButton>
                 <Badge badgeContent={4} color="primary">
-                  <Mail fontSize="large" sx={iconColor} />
+                  <Mail fontSize="large" sx={iconStyle} />
                 </Badge>
               </IconButton>
               <ThemeButton />
