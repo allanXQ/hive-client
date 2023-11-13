@@ -45,6 +45,7 @@ import { useSelector } from "react-redux";
 import { selectTheme } from "redux/features/app/configSlice";
 import { ThemeButton } from "components/common/Button";
 import { useTheme } from "@emotion/react";
+import useUserData from "Hooks/useUserData";
 
 const drawerWidth = 200;
 
@@ -62,6 +63,7 @@ function ResponsiveDrawer(props) {
 
   const currentTheme = useSelector(selectTheme);
   const theme = useTheme();
+  const userData = useUserData();
 
   const currentpath = useLocation().pathname;
 
@@ -238,8 +240,8 @@ function ResponsiveDrawer(props) {
       path: "/deposit",
     },
     {
-      name: "Trade",
-      path: "/trade",
+      name: "Memberships",
+      path: "/memberships",
     },
     {
       name: "Loan Request",
@@ -317,8 +319,8 @@ function ResponsiveDrawer(props) {
               }}
             >
               <Avatar
-                alt="Remy Sharp"
-                src="/img/avatar.png"
+                alt={userData?.username}
+                src={userData?.photoURL}
                 sx={{
                   width: 35,
                   height: 35,
