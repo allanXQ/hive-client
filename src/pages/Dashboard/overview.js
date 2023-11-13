@@ -29,6 +29,7 @@ const Overview = () => {
         display: "flex",
         flexDirection: "column",
         gap: 1,
+        // maxWidth: 700,
       }}
     >
       <Typography variant="h6">Account Overview</Typography>
@@ -40,7 +41,6 @@ const Overview = () => {
           flexWrap: "wrap",
           flexGrow: 1,
           flexFlow: "row wrap",
-          width: "inherit",
         }}
       >
         {stats.map((stat) => (

@@ -1,4 +1,5 @@
 import { Box, Typography } from "@mui/material";
+import useResponsive from "Hooks/useResponsive";
 import useUserData from "Hooks/useUserData";
 import MUIDataGrid from "components/common/Datagrid";
 import React, { useMemo } from "react";
@@ -7,6 +8,7 @@ const overviewWidth = `calc(100vw - 320px)`;
 
 const Deposits = () => {
   const userData = useUserData();
+  const { isXs, isSm, isMd, isLg, isXl } = useResponsive();
 
   const columns = useMemo(() => [
     { field: "Gateway", headerName: "Gateway", width: 100 },
@@ -37,10 +39,23 @@ const Deposits = () => {
         flexDirection: "column",
         gap: 1,
         overflow: "auto",
+        width: 800,
       }}
     >
       <Typography variant="h6">Recent Deposits</Typography>
-      <MUIDataGrid rows={rows} columns={columns} width={overviewWidth} />
+      <MUIDataGrid
+        rows={rows}
+        columns={columns}
+        width={
+          isSm
+            ? "98vw"
+            : isLg
+            ? `calc(100vw - 220px)`
+            : isXl
+            ? `calc(100vw - 520px)`
+            : `calc(100vw - 520px)`
+        }
+      />
     </Box>
   );
 };

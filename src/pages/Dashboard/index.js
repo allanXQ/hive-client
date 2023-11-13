@@ -4,31 +4,45 @@ import Memberships from "./grids/memberships";
 import Deposits from "./grids/deposits";
 import Contributions from "./charts/contributions";
 import Overview from "./overview";
-
-const overviewWidth = `calc(100vw - 220px)`;
-const chartsWidth = `calc(100vw - ${overviewWidth})`;
+import useResponsive from "Hooks/useResponsive";
 
 const Dashboard = React.memo(() => {
+  const { isSm, isXl } = useResponsive();
+  const overviewWidth = isSm
+    ? "100vw"
+    : isXl
+    ? `calc(100vw - 220px)`
+    : `calc(100vw - 220px)`;
+  const chartsWidth = `calc(100vw - ${overviewWidth})`;
+
   return (
     <Box
       sx={{
         display: "flex",
-        // flexWrap: "wrap",
-        flexDirection: "row",
+        flexWrap: "wrap",
+        flexDirection: {
+          xs: "column",
+          lg: "row",
+        },
         paddingTop: 2,
+        // width: {
+        //   xs: "100vw",
+        //   sm: overviewWidth,
+        // },
       }}
     >
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
+          // flexGrow: 1,
           gap: 5,
+          border: "0.5px solid gray",
+          padding: 2,
           width: {
             xs: "100vw",
             sm: overviewWidth,
           },
-          border: "0.5px solid gray",
-          padding: 2,
         }}
       >
         <Overview />
@@ -36,7 +50,7 @@ const Dashboard = React.memo(() => {
       </Box>
       <Box
         sx={{
-          width: chartsWidth,
+          width: 300, //chartsWidth,
           display: "flex",
           padding: 2,
         }}
