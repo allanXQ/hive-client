@@ -93,11 +93,6 @@ function ResponsiveDrawer(props) {
           path: "/transact/deposit",
         },
         {
-          name: "Withdraw",
-          icon: <RedeemOutlined sx={iconStyle} />,
-          path: "/transact/withdraw",
-        },
-        {
           name: "Contribute",
           icon: <SavingsOutlined sx={iconStyle} />,
           path: "/transact/contribute",
@@ -138,11 +133,6 @@ function ResponsiveDrawer(props) {
           name: "Deposits",
           icon: <PaymentsOutlined sx={iconStyle} />,
           path: "/history/deposits",
-        },
-        {
-          name: "Withdrawals",
-          icon: <RedeemOutlined sx={iconStyle} />,
-          path: "/history/withdrawals",
         },
         {
           name: "Contributionss",

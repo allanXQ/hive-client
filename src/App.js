@@ -8,8 +8,6 @@ import Logout from "pages/Auth/logout";
 import Register from "pages/Auth/register";
 import ForgotPassword from "pages/Auth/forgotPassword";
 import Deposit from "pages/Transact/deposit";
-import Withdrawal from "pages/Transact/withdraw";
-import WithdrawalHistory from "pages/TransactionHistory/WithdrawalHistory";
 import MessageModal from "components/messages";
 import Home from "pages/Home";
 import HomeLayout from "components/Layouts/HomeLayout";
@@ -47,13 +45,11 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="history">
             <Route path="deposits" element={<DepositHistory />} />
-            <Route path="withdrawals" element={<WithdrawalHistory />} />
             <Route path="loan-requests" element={<LoanRequests />} />
             <Route path="loan-payments" element={<LoanPayments />} />
           </Route>
           <Route path="transact">
             <Route path="deposit" element={<Deposit />} />
-            <Route path="withdraw" element={<Withdrawal />} />
           </Route>
         </Route>
       </Routes>
