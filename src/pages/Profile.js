@@ -47,7 +47,7 @@ const Profile = () => {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12}>
         <Card>
           <CardHeader
             title="Account Details"
