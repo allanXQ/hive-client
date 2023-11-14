@@ -3,24 +3,17 @@ import ResponsiveDrawer from "../Navigation/Navbar";
 import { Outlet, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "redux/features/user/userSlice";
-import { selectDrawerWidth } from "redux/features/app/configSlice";
 import { apiCall } from "redux/async/asyncThunk";
+import { Box } from "@mui/material";
 
 const RootLayout = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  let drawerWidth = useSelector(selectDrawerWidth);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const location = useLocation();
-  const path = location.pathname;
-  const isTrade = path.includes("trade/spot");
-  isTrade ? (drawerWidth = "0px") : (drawerWidth = drawerWidth);
 
-  const excludedPaths = ["trade", "transact"];
-  const currentPath = useLocation().pathname;
+  const currentPath = location.pathname;
   useEffect(() => {
-    if (excludedPaths.some((path) => currentPath.includes(path))) return;
-
     dispatch(
       apiCall({
         endpoint: "user/user-info",
