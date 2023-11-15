@@ -5,8 +5,8 @@ import MainHistory from "./mainHistory";
 const columns = [
   { field: "Gateway", headerName: "Gateway", width: 200 },
   { field: "ReferenceNumber", headerName: "Reference Number", width: 200 },
-  { field: "AccountNumber", headerName: "Accout Number", width: 200 },
-  { field: "Amount", headerName: "Amount", width: 200 },
+  { field: "AccountNumber", headerName: "Account Number", width: 200 },
+  { field: "Amount", headerName: "Amount", width: 150 },
   { field: "Status", headerName: "Status", width: 150 },
   { field: "Date", headerName: "Date", width: 200 },
 ];
@@ -34,7 +34,7 @@ const DepositHistory = () => {
         AccountNumber: deposit.phone,
         Amount: `KSH ${deposit.amount}`,
         Status: "success",
-        Date: deposit.created,
+        Date: deposit.createdAt,
       };
     });
 

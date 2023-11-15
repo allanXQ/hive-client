@@ -5,34 +5,12 @@ import { Overview } from "./overview";
 
 const MainHistory = ({ title, userInfo, columns, rows, buttons }) => {
   return (
-    <Grid
-      container
-      sx={
-        {
-          // height: "100vh",
-          // px: 1,
-        }
-      }
-    >
-      <Grid
-        item
-        xs={12}
-        sx={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
+    <Grid container spacing={5} sx={{}}>
+      <Grid item xs={12} sx={{}}>
         <Overview userData={userInfo} buttons={buttons} />
       </Grid>
-      <Grid
-        item
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        {/* <MUIDataGrid title={title} columns={columns} rows={rows} /> */}
+      <Grid item xs={12}>
+        <MUIDataGrid title={title} columns={columns} rows={rows} />
       </Grid>
     </Grid>
   );
