@@ -33,7 +33,7 @@ const DepositHistory = () => {
         ReferenceNumber: deposit.mpesaRef,
         AccountNumber: deposit.phone,
         Amount: `KSH ${deposit.amount}`,
-        Status: "success",
+        Status: deposit.status,
         Date: deposit.createdAt,
       };
     });
