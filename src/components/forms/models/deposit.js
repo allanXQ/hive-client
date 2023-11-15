@@ -19,7 +19,7 @@ const DepositModel = {
       name: "amount",
       type: "number",
       label: "Amount",
-      placeholder: "min 100",
+      placeholder: "min 10",
       required: true,
     },
   ],
