@@ -17,25 +17,26 @@ const Dashboard = React.memo(() => {
   const currentTheme = useSelector(selectTheme);
   const theme = useTheme();
   const userData = useUserData();
-  const overviewWidth = isSm
-    ? "100vw"
-    : isXl
-    ? `calc(100vw - 220px)`
-    : `calc(100vw - 220px)`;
-  const chartsWidth = `calc(100vw - ${overviewWidth})`;
+  // const overviewWidth = isSm
+  //   ? "100vw"
+  //   : isXl
+  //   ? `calc(100vw - 245px)`
+  //   : `calc(100vw - 245px)`;
+  // const chartsWidth = `calc(100vw - ${overviewWidth})`;
 
   const stats = [
     {
       name: "Balance",
       value: userData?.accountBalance || 0,
     },
-    {
-      name: "Contributions",
-      value: userData?.totalContributions || 0,
-    },
+
     {
       name: "Loans",
       value: userData?.activeLoans || 0,
+    },
+    {
+      name: "Contributions",
+      value: userData?.totalContributions || 0,
     },
     {
       name: "Memberships",
@@ -47,21 +48,20 @@ const Dashboard = React.memo(() => {
     <Grid
       container
       sx={{
-        width: overviewWidth,
-        px: 4,
+        display: "grid",
+        gridTemplateColumns: {
+          md: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+        },
+        gap: 5,
       }}
     >
-      <Grid
-        item
-        sx={{
-          display: "flex",
-          gap: 5,
-        }}
-      >
+      <Grid item>
         <Card
           sx={{
-            width: 350,
-            height: 300,
+            p: 2,
+            display: "grid",
+            gap: 5,
             border: "1px solid #e0e0e0",
             backgroundColor:
               currentTheme === "light"
@@ -69,66 +69,72 @@ const Dashboard = React.memo(() => {
                 : theme.palette.bgColor.dark,
           }}
         >
-          <Stack
-            direction="row"
-            spacing={4}
+          <Grid
+            container
             sx={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
-              // justifyContent: "center",
-              p: 3,
             }}
           >
-            <Box sx={{ display: "flex", flexDirection: "column" }}>
-              <Typography variant="h6" sx={{ mb: 2 }}>
+            <Grid
+              item
+              sx={{ display: "grid", gridTemplateColumns: "repeat(1, 1fr)" }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
                 John Doe
               </Typography>
               <MuiButton
                 variant="contained"
                 content="Edit Profile"
                 sx={{
-                  width: 150,
+                  width: "100%",
                 }}
               />
-            </Box>
-            <Avatar
-              alt="userData?.username"
-              src="https://mui.com/static/images/avatar/1.jpg" //{userData?.photoURL}
-              sx={{
-                width: 80,
-                height: 80,
-              }}
-            />
-          </Stack>
-          <Box
+            </Grid>
+            <Grid item>
+              <Avatar
+                alt="userData?.username"
+                src="https://mui.com/static/images/avatar/1.jpg" //{userData?.photoURL}
+                sx={{
+                  width: 80,
+                  height: 80,
+                }}
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: { xs: 2, sm: 4 },
-              flexWrap: "wrap",
-              flexGrow: 1,
-              flexFlow: "row wrap",
-              p: 3,
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              alignContent: "center",
+              gap: 5,
             }}
           >
-            {stats.map((stat) => (
-              <Box
-                key={stat.name}
+            {stats.map((stat, index) => (
+              <Grid
+                item
+                key={index}
                 sx={{
-                  width: 100,
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1,
+                  alignItems: "center",
                 }}
               >
-                <Typography variant="body2">{stat.value}</Typography>
-                <Typography variant="body1">{stat.name}</Typography>
-              </Box>
+                <Typography variant="h6">{stat.value}</Typography>
+
+                <Typography variant="h6">{stat.name}</Typography>
+              </Grid>
             ))}
-          </Box>
+          </Grid>
         </Card>
+      </Grid>
+      <Grid item>
         <Card
           sx={{
-            width: 350,
-            height: 300,
+            // maxWidth: 350,
+            maxHeight: 313,
             border: "1px solid #e0e0e0",
             backgroundColor:
               currentTheme === "light"
@@ -137,6 +143,94 @@ const Dashboard = React.memo(() => {
           }}
         >
           <BarChart />
+        </Card>
+      </Grid>
+      <Grid
+        item
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(1, 1fr)",
+          gridTemplateRows: "repeat(2, 1fr)",
+          gap: 5,
+        }}
+      >
+        <Card
+          sx={{
+            // width: "100%",
+            // height: 300,
+            border: "1px solid #e0e0e0",
+            backgroundColor:
+              currentTheme === "light"
+                ? theme.palette.bgColor.light
+                : theme.palette.bgColor.dark,
+          }}
+        >
+          <Grid container>
+            <Grid
+              item
+              sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                John Doe
+              </Typography>
+              <MuiButton
+                variant="contained"
+                content="Edit Profile"
+                sx={{
+                  width: "100%",
+                }}
+              />
+            </Grid>
+            <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+              <Avatar
+                alt="userData?.username"
+                src="https://mui.com/static/images/avatar/1.jpg" //{userData?.photoURL}
+                sx={{
+                  width: 80,
+                  height: 80,
+                }}
+              />
+            </Grid>
+          </Grid>
+        </Card>
+        <Card
+          sx={{
+            // width: "100%",
+            // height: 300,
+            border: "1px solid #e0e0e0",
+            backgroundColor:
+              currentTheme === "light"
+                ? theme.palette.bgColor.light
+                : theme.palette.bgColor.dark,
+          }}
+        >
+          <Grid container>
+            <Grid
+              item
+              sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                John Doe
+              </Typography>
+              <MuiButton
+                variant="contained"
+                content="Edit Profile"
+                sx={{
+                  width: "100%",
+                }}
+              />
+            </Grid>
+            <Grid item sx={{ display: "flex", flexDirection: "column" }}>
+              <Avatar
+                alt="userData?.username"
+                src="https://mui.com/static/images/avatar/1.jpg" //{userData?.photoURL}
+                sx={{
+                  width: 80,
+                  height: 80,
+                }}
+              />
+            </Grid>
+          </Grid>
         </Card>
       </Grid>
     </Grid>

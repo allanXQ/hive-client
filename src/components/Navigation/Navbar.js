@@ -252,7 +252,7 @@ function ResponsiveDrawer(props) {
   return (
     <Box
       sx={{
-        display: "flex",
+        display: "grid",
         backgroundColor:
           currentTheme === "light"
             ? theme.palette.bgColor.light
@@ -385,10 +385,23 @@ function ResponsiveDrawer(props) {
         component="main"
         sx={{
           overflowX: "hidden",
+          display: "grid",
+          width: { xs: "100vw", sm: `calc(100vw - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` },
+          gap: 2,
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
         <Toolbar sx={{}} />
-        {props.children}
+        <Box
+          sx={{
+            width: { xs: "100vw", sm: `calc(100vw - ${drawerWidth + 50}px)` },
+            px: { xs: 2, sm: 0 },
+          }}
+        >
+          {props.children}
+        </Box>
       </Box>
     </Box>
   );
