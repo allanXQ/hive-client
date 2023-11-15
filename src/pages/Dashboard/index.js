@@ -1,5 +1,5 @@
 import { Avatar, Box, Card, Grid, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
 import Memberships from "./grids/memberships";
 import Deposits from "./grids/deposits";
 import Contributions from "./charts/contributions";
@@ -13,16 +13,9 @@ import useUserData from "Hooks/useUserData";
 import BarChart from "./charts/contributions";
 
 const Dashboard = React.memo(() => {
-  const { isSm, isXl } = useResponsive();
   const currentTheme = useSelector(selectTheme);
   const theme = useTheme();
   const userData = useUserData();
-  // const overviewWidth = isSm
-  //   ? "100vw"
-  //   : isXl
-  //   ? `calc(100vw - 245px)`
-  //   : `calc(100vw - 245px)`;
-  // const chartsWidth = `calc(100vw - ${overviewWidth})`;
 
   const stats = [
     {
@@ -44,6 +37,85 @@ const Dashboard = React.memo(() => {
     },
   ];
 
+  const cardStyle = useMemo(
+    () => ({
+      p: 2,
+      border: "1px solid #e0e0e0",
+      display: "grid",
+      backgroundColor:
+        currentTheme === "light"
+          ? theme.palette.bgColor.light
+          : theme.palette.bgColor.dark,
+    }),
+    [currentTheme, theme.palette.bgColor]
+  );
+
+  const cardStats = [
+    {
+      name: "Recent Transactions",
+      value: [
+        {
+          name: "Deposit",
+          value: 4000,
+        },
+        {
+          name: "Amount",
+          value: 4000,
+        },
+        {
+          name: "Status",
+          value: "Failed",
+        },
+        {
+          name: "Date",
+          value: "12/12/2021",
+        },
+      ],
+    },
+    {
+      name: "Upcoming Obligations",
+      value: [
+        {
+          name: "Chama",
+          value: "Chama 1",
+        },
+        {
+          name: "Type",
+          value: "Wellfare",
+        },
+        {
+          name: "Amount",
+          value: 100,
+        },
+        {
+          name: "Due",
+          value: "12/12/2021",
+        },
+      ],
+    },
+    {
+      name: "Active Loans",
+      value: [
+        {
+          name: "Chama",
+          value: "Chama 1",
+        },
+        {
+          name: "Amount",
+          value: 4000,
+        },
+        {
+          name: "Interest",
+          value: 200,
+        },
+        {
+          name: "Due",
+          value: "12/12/2021",
+        },
+      ],
+    },
+  ];
+
   return (
     <Grid
       container
@@ -59,14 +131,8 @@ const Dashboard = React.memo(() => {
       <Grid item>
         <Card
           sx={{
-            p: 2,
-            display: "grid",
+            ...cardStyle,
             gap: 5,
-            border: "1px solid #e0e0e0",
-            backgroundColor:
-              currentTheme === "light"
-                ? theme.palette.bgColor.light
-                : theme.palette.bgColor.dark,
           }}
         >
           <Grid
@@ -141,13 +207,8 @@ const Dashboard = React.memo(() => {
       <Grid item>
         <Card
           sx={{
-            // maxWidth: 350,
+            ...cardStyle,
             maxHeight: 328,
-            border: "1px solid #e0e0e0",
-            backgroundColor:
-              currentTheme === "light"
-                ? theme.palette.bgColor.light
-                : theme.palette.bgColor.dark,
           }}
         >
           <BarChart />
@@ -162,264 +223,55 @@ const Dashboard = React.memo(() => {
           gap: 2,
         }}
       >
-        <Card
-          sx={{
-            p: 1,
-            border: "1px solid #e0e0e0",
-            backgroundColor:
-              currentTheme === "light"
-                ? theme.palette.bgColor.light
-                : theme.palette.bgColor.dark,
-            display: "grid",
-            gap: 1,
-          }}
-        >
-          <Box
+        {cardStats.map((card, index) => (
+          <Card
+            key={index}
             sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="bodySmallBold"
-              sx={
-                {
-                  // fontWeight: 600,
-                }
-              }
-            >
-              RECENT TRANSACTIONS
-            </Typography>
-            <MuiButton
-              variant="text"
-              content="See All"
-              sx={{
-                margin: 0,
-                padding: 0,
-              }}
-            />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
+              ...cardStyle,
+              p: 1,
+              display: "grid",
+              gap: 1,
             }}
           >
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
+                justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
-              <Typography variant="bodySmallBold">Type</Typography>
-              <Typography variant="bodySmallBold">Deposit</Typography>
+              <Typography variant="bodySmallBold">{card.name}</Typography>
+              <MuiButton
+                variant="text"
+                content="See All"
+                sx={{
+                  margin: 0,
+                  padding: 0,
+                }}
+              />
             </Box>
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
+                justifyContent: "space-between",
               }}
             >
-              <Typography variant="bodySmallBold">Amount</Typography>
-              <Typography variant="bodySmallBold">4000</Typography>
+              {card.value.map((value, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography variant="bodySmallBold">{value.name}</Typography>
+                  <Typography variant="bodySmallBold">{value.value}</Typography>
+                </Box>
+              ))}
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Status</Typography>
-              <Typography variant="bodySmallBold">Failed</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Date</Typography>
-              <Typography variant="bodySmallBold">12/12/2021</Typography>
-            </Box>
-          </Box>
-        </Card>
-        <Card
-          sx={{
-            p: 1,
-            border: "1px solid #e0e0e0",
-            backgroundColor:
-              currentTheme === "light"
-                ? theme.palette.bgColor.light
-                : theme.palette.bgColor.dark,
-            display: "grid",
-            gap: 1,
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="bodySmallBold"
-              sx={
-                {
-                  // fontWeight: 600,
-                }
-              }
-            >
-              UPCOMING OBLIGATIONS
-            </Typography>
-            <MuiButton
-              variant="text"
-              content="See All"
-              sx={{
-                margin: 0,
-                padding: 0,
-              }}
-            />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Chama</Typography>
-              <Typography variant="bodySmallBold">Chama 1</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Type</Typography>
-              <Typography variant="bodySmallBold">Wellfare</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Amount</Typography>
-              <Typography variant="bodySmallBold">100</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Due</Typography>
-              <Typography variant="bodySmallBold">12/12/2021</Typography>
-            </Box>
-          </Box>
-        </Card>
-        <Card
-          sx={{
-            p: 1,
-            border: "1px solid #e0e0e0",
-            backgroundColor:
-              currentTheme === "light"
-                ? theme.palette.bgColor.light
-                : theme.palette.bgColor.dark,
-            display: "grid",
-            gap: 1,
-          }}
-        >
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <Typography
-              variant="bodySmallBold"
-              sx={
-                {
-                  // fontWeight: 600,
-                }
-              }
-            >
-              ACTIVE LOANS
-            </Typography>
-            <MuiButton
-              variant="text"
-              content="See All"
-              sx={{
-                margin: 0,
-                padding: 0,
-              }}
-            />
-          </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Chama</Typography>
-              <Typography variant="bodySmallBold">Chama 1</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Amount</Typography>
-              <Typography variant="bodySmallBold">4000</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Interest</Typography>
-              <Typography variant="bodySmallBold">200</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Typography variant="bodySmallBold">Due</Typography>
-              <Typography variant="bodySmallBold">12/12/2021</Typography>
-            </Box>
-          </Box>
-        </Card>
+          </Card>
+        ))}
       </Grid>
     </Grid>
   );
