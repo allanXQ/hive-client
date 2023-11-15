@@ -7,13 +7,16 @@ const MainHistory = ({ title, userInfo, columns, rows, buttons }) => {
   return (
     <Grid
       container
-      sx={{
-        height: "100vh",
-        px: 1,
-      }}
+      sx={
+        {
+          // height: "100vh",
+          // px: 1,
+        }
+      }
     >
       <Grid
         item
+        xs={12}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -29,7 +32,7 @@ const MainHistory = ({ title, userInfo, columns, rows, buttons }) => {
           justifyContent: "center",
         }}
       >
-        <MUIDataGrid title={title} columns={columns} rows={rows} />
+        {/* <MUIDataGrid title={title} columns={columns} rows={rows} /> */}
       </Grid>
     </Grid>
   );
