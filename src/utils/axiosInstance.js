@@ -28,7 +28,7 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401) {
+    if (error?.response?.status === 401) {
       if (error.response.data.message === "Invalid Refresh Token") {
         store.dispatch(logout());
         window.location.href = "/login";

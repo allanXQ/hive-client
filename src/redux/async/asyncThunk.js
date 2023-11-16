@@ -20,13 +20,13 @@ export const apiCall = createAsyncThunk(
           status: response?.status,
         });
       }
-      if (response.status === 200 && method?.toLowerCase() === "post") {
+      if (response?.status === 200 && method?.toLowerCase() === "post") {
         thunkAPI.dispatch(
-          reportError({ message: response.data.message, type: "success" })
+          reportError({ message: response?.data?.message, type: "success" })
         );
       }
 
-      return { data: response.data.payload, slice };
+      return { data: response?.data?.payload, slice };
     } catch (error) {
       const errorMsg = error.response?.data?.message || error.message;
       thunkAPI.dispatch(reportError({ message: errorMsg, type: "error" }));
