@@ -163,7 +163,20 @@ function ResponsiveDrawer(props) {
 
   const drawer = (
     <Box>
-      <Toolbar />
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <img
+          src={currentTheme === "dark" ? "/logo.png" : "/logoblack.png"}
+          alt="logo"
+          width="40px"
+          height="40px"
+        />
+      </Toolbar>
       <Divider />
       <List>
         {navlinks.map((item, index) => (

@@ -18,12 +18,13 @@ const ActionButton = memo(({ chama }) => {
 
 const Memberships = () => {
   const columns = [
-    { field: "Chama", headerName: "Chama", width: 100 },
-    { field: "Contributions", headerName: "Contributions", width: 100 },
+    { field: "Chama", headerName: "Chama", width: 110 },
+    { field: "Members", headerName: "Members", width: 110 },
+    { field: "Assets", headerName: "Assets", width: 110 },
     {
       field: "Dashboard",
       headerName: "Dashboard",
-      width: 100,
+      width: 110,
       renderCell: (params) => <ActionButton chama={params.row.Chama} />,
     },
   ];
@@ -32,17 +33,20 @@ const Memberships = () => {
     {
       id: 1,
       Chama: "Chama1",
-      Contributions: "KSH 1000",
+      Members: "KSH 1000",
+      Assets: "KSH 1000",
     },
     {
       id: 2,
       Chama: "Chama2",
-      Contributions: "KSH 1000",
+      Members: "KSH 1000",
+      Assets: "KSH 1000",
     },
     {
       id: 3,
       Chama: "Chama3",
-      Contributions: "KSH 1000",
+      Members: "KSH 1000",
+      Assets: "KSH 1000",
     },
   ];
 
@@ -56,7 +60,6 @@ const Memberships = () => {
         // gap: 2,
       }}
     >
-      <Typography variant="h6">Memberships</Typography>
       <MUIDataGrid rows={rows} columns={columns} />
     </Box>
   );

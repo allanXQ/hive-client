@@ -13,9 +13,9 @@ const Deposits = () => {
   const columns = useMemo(() => [
     { field: "Gateway", headerName: "Gateway", width: 100 },
     { field: "ReferenceNumber", headerName: "Reference Number", width: 150 },
-    { field: "AccountNumber", headerName: "Accout Number", width: 150 },
-    { field: "Amount", headerName: "Amount", width: 100 },
-    { field: "Status", headerName: "Status", width: 100 },
+    { field: "AccountNumber", headerName: "Account Number", width: 150 },
+    { field: "Amount", headerName: "Amount", width: 150 },
+    { field: "Status", headerName: "Status", width: 150 },
     { field: "Date", headerName: "Date", width: 200 },
   ]);
 
@@ -37,7 +37,6 @@ const Deposits = () => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        gap: 1,
         overflow: "auto",
         width: 800,
       }}
