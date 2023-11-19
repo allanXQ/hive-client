@@ -117,7 +117,12 @@ const Dashboard = React.memo(() => {
   ];
 
   return (
-    <>
+    <Box
+      sx={{
+        display: "grid",
+        gap: 2,
+      }}
+    >
       <Grid
         container
         sx={{
@@ -297,7 +302,7 @@ const Dashboard = React.memo(() => {
           <Deposits />
         </Grid>
       </Grid>
-    </>
+    </Box>
   );
 });
 
