@@ -288,20 +288,6 @@ const Dashboard = React.memo(() => {
           ))}
         </Grid>
       </Grid>
-      <Grid
-        container
-        sx={{
-          display: "grid",
-          gridTemplateColumns: "repeat(2, 1fr)",
-          alignContent: "center",
-          gap: 10,
-        }}
-        xs={12}
-      >
-        <Grid item>
-          <Deposits />
-        </Grid>
-      </Grid>
     </Box>
   );
 });
