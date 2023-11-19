@@ -1,6 +1,6 @@
 import { Avatar, Box, Card, Grid, Stack, Typography } from "@mui/material";
 import React, { useMemo } from "react";
-import Memberships from "./components/grids/memberships";
+// import Memberships from "./components/grids/memberships";
 import Deposits from "./components/grids/deposits";
 import Overview from "./components/overview";
 import { MuiButton } from "components/common/Button";
@@ -9,11 +9,13 @@ import { selectTheme } from "redux/features/app/configSlice";
 import { useTheme } from "@emotion/react";
 import useUserData from "Hooks/useUserData";
 import { BarChart, Contributions } from "./components/charts/contributions";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = React.memo(() => {
   const currentTheme = useSelector(selectTheme);
   const theme = useTheme();
   const userData = useUserData();
+  const navigate = useNavigate();
 
   const stats = [
     {
@@ -114,6 +116,66 @@ const Dashboard = React.memo(() => {
     },
   ];
 
+  const memberships = [
+    {
+      name: "Chama 1",
+      members: 10,
+      assets: 10000,
+    },
+    {
+      name: "Chama 2",
+      members: 10,
+      assets: 10000,
+    },
+    {
+      name: "Chama 3",
+      members: 10,
+      assets: 10000,
+    },
+    {
+      name: "Chama 4",
+      members: 10,
+      assets: 10000,
+    },
+  ];
+
+  const Memberships = ({ memberships }) => {
+    return (
+      <Grid item>
+        <Card sx={cardStyle}>
+          {memberships.map((membership, index) => (
+            <Grid container>
+              <Grid item>
+                <Stack direction="row">
+                  <Typography variant="bodySmallBold">
+                    {membership.name}
+                  </Typography>
+                  <MuiButton variant="contained" content="View" />
+                </Stack>
+              </Grid>
+              <Grid item>
+                <Stack>
+                  <Typography variant="bodySmallBold">
+                    {membership.members}
+                  </Typography>
+                  <Typography variant="bodySmallBold">Members</Typography>
+                </Stack>
+              </Grid>
+              <Grid item>
+                <Stack>
+                  <Typography variant="bodySmallBold">
+                    {membership.assets}
+                  </Typography>
+                  <Typography variant="bodySmallBold">Assets</Typography>
+                </Stack>
+              </Grid>
+            </Grid>
+          ))}
+        </Card>
+      </Grid>
+    );
+  };
+
   return (
     <>
       <Grid
@@ -150,11 +212,12 @@ const Dashboard = React.memo(() => {
                 }}
               >
                 <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                  John Doe
+                  {userData?.firstname} {userData?.lastname}
                 </Typography>
                 <MuiButton
                   variant="contained"
                   content="Edit Profile"
+                  onClick={() => navigate("/profile")}
                   sx={{
                     width: "100%",
                     maxHeight: "90%",
@@ -163,8 +226,11 @@ const Dashboard = React.memo(() => {
               </Grid>
               <Grid item>
                 <Avatar
-                  alt="userData?.username"
-                  src="https://mui.com/static/images/avatar/1.jpg" //{userData?.photoURL}
+                  alt={userData?.username || "profile_pic"}
+                  src={
+                    "https://mui.com/static/images/avatar/1.jpg" ||
+                    userData?.photoURL
+                  }
                   sx={{
                     width: 80,
                     height: 80,
@@ -277,11 +343,66 @@ const Dashboard = React.memo(() => {
           ))}
         </Grid>
       </Grid>
-      <Grid container>
-        <Grid item>
-          <Card sx={{ ...cardStyle, p: 1 }}>
-            <Contributions />
-          </Card>
+      <Grid
+        container
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(1, 1fr)",
+          gap: 2,
+        }}
+      >
+        <Grid item xs={5}>
+          <Grid
+            container
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              alignContent: "center",
+              gap: 2,
+            }}
+          >
+            {memberships.map((membership, index) => (
+              <Box
+                sx={{
+                  display: "grid",
+                  gap: 2,
+                }}
+              >
+                <Grid
+                  item
+                  key={index}
+                  sx={{
+                    display: "flex",
+                    gap: 1,
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Typography variant="body1">{membership.name}</Typography>
+
+                  <MuiButton variant="text" content="View" />
+                </Grid>
+                <Grid
+                  item
+                  sx={{
+                    display: "flex",
+                    gap: 1,
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Stack direction="column" spacing={1} alignItems="center">
+                    <Typography variant="h6">{membership.members}</Typography>
+                    <Typography variant="h6">Members</Typography>
+                  </Stack>
+                  <Stack direction="column" spacing={1} alignItems="center">
+                    <Typography variant="h6">{membership.assets}</Typography>
+                    <Typography variant="h6">Assets</Typography>
+                  </Stack>
+                </Grid>
+              </Box>
+            ))}
+          </Grid>
         </Grid>
       </Grid>
     </>
