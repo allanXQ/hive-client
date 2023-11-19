@@ -20,7 +20,11 @@ export const apiCall = createAsyncThunk(
           status: response?.status,
         });
       }
-      if (response?.status === 200 && method?.toLowerCase() === "post") {
+      if (
+        response?.status === 200 &&
+        method?.toLowerCase() === "post" &&
+        !response?.data?.payload
+      ) {
         thunkAPI.dispatch(
           reportError({ message: response?.data?.message, type: "success" })
         );
