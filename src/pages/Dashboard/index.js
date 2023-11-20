@@ -8,8 +8,13 @@ import { useSelector } from "react-redux";
 import { selectTheme } from "redux/features/app/configSlice";
 import { useTheme } from "@emotion/react";
 import useUserData from "Hooks/useUserData";
-import { BarChart, Contributions } from "./components/charts/contributions";
+import { DoughnutChart, BarChart } from "./components/charts/contributions";
 import { useNavigate } from "react-router-dom";
+import {
+  AccountBalanceOutlined,
+  AssessmentOutlined,
+  AttachMoneyOutlined,
+} from "@mui/icons-material";
 
 const Dashboard = React.memo(() => {
   const currentTheme = useSelector(selectTheme);
@@ -40,13 +45,16 @@ const Dashboard = React.memo(() => {
   const cardStyle = useMemo(
     () => ({
       p: 2,
-      border: "1px solid #e0e0e0",
+      // border: "0.5px solid #3f51b5",
+      elevation: 5,
+      boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.5)",
       display: "grid",
       backgroundColor:
         currentTheme === "light"
           ? theme.palette.bgColor.light
           : theme.palette.bgColor.dark,
     }),
+
     [currentTheme, theme.palette.bgColor]
   );
 
@@ -117,178 +125,249 @@ const Dashboard = React.memo(() => {
   ];
 
   return (
-    <Box
+    <Grid
+      container
       sx={{
         display: "grid",
+        gridTemplateColumns: {
+          md: "repeat(2, 1fr)",
+          lg: "repeat(3, 1fr)",
+        },
         gap: 2,
       }}
     >
-      <Grid
-        container
-        sx={{
-          display: "grid",
-          gridTemplateColumns: {
-            md: "repeat(2, 1fr)",
-            lg: "repeat(3, 1fr)",
-          },
-          gap: 2,
-        }}
-      >
-        <Grid item>
-          <Card
+      <Grid item>
+        <Card
+          sx={{
+            ...cardStyle,
+            gap: 5,
+          }}
+        >
+          <Grid
+            container
             sx={{
-              ...cardStyle,
-              gap: 5,
+              display: "flex",
+              justifyContent: "space-between",
             }}
           >
             <Grid
-              container
+              item
+              sx={{
+                display: "grid",
+                gap: 2,
+                gridTemplateColumns: "repeat(1, 1fr)",
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                {userData?.firstname} {userData?.lastname}
+              </Typography>
+              <MuiButton
+                variant="contained"
+                content="Edit Profile"
+                onClick={() => navigate("/profile")}
+                sx={{
+                  width: "100%",
+                  maxHeight: "90%",
+                }}
+              />
+            </Grid>
+            <Grid item>
+              <Avatar
+                alt={userData?.username || "profile_pic"}
+                src={
+                  "https://mui.com/static/images/avatar/1.jpg" ||
+                  userData?.photoURL
+                }
+                sx={{
+                  width: 80,
+                  height: 80,
+                }}
+              />
+            </Grid>
+          </Grid>
+          <Grid
+            container
+            sx={{
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              alignContent: "center",
+              gap: 5,
+            }}
+          >
+            {stats.map((stat, index) => (
+              <Grid
+                item
+                key={index}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography variant="h3" color="primary.main">
+                  {stat.value}
+                </Typography>
+
+                <Typography variant="h6">{stat.name}</Typography>
+              </Grid>
+            ))}
+          </Grid>
+        </Card>
+      </Grid>
+      <Grid item>
+        <Card
+          sx={{
+            ...cardStyle,
+            maxHeight: 328,
+          }}
+        >
+          <BarChart />
+        </Card>
+      </Grid>
+      <Grid
+        item
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(1, 1fr)",
+          gridTemplateRows: "repeat(3, 1fr)",
+          gap: 2,
+        }}
+      >
+        {cardStats.map((card, index) => (
+          <Card
+            key={index}
+            sx={{
+              ...cardStyle,
+              p: 1,
+              display: "grid",
+              gap: 1,
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <Typography variant="bodySmallBold">{card.name}</Typography>
+              <MuiButton
+                variant="text"
+                content="See All"
+                sx={{
+                  margin: 0,
+                  padding: 0,
+                }}
+              />
+            </Box>
+            <Box
               sx={{
                 display: "flex",
                 justifyContent: "space-between",
               }}
             >
-              <Grid
-                item
-                sx={{
-                  display: "grid",
-                  gap: 2,
-                  gridTemplateColumns: "repeat(1, 1fr)",
-                }}
-              >
-                <Typography variant="h6" sx={{ fontWeight: 600 }}>
-                  {userData?.firstname} {userData?.lastname}
-                </Typography>
-                <MuiButton
-                  variant="contained"
-                  content="Edit Profile"
-                  onClick={() => navigate("/profile")}
-                  sx={{
-                    width: "100%",
-                    maxHeight: "90%",
-                  }}
-                />
-              </Grid>
-              <Grid item>
-                <Avatar
-                  alt={userData?.username || "profile_pic"}
-                  src={
-                    "https://mui.com/static/images/avatar/1.jpg" ||
-                    userData?.photoURL
-                  }
-                  sx={{
-                    width: 80,
-                    height: 80,
-                  }}
-                />
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              sx={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
-                alignContent: "center",
-                gap: 5,
-              }}
-            >
-              {stats.map((stat, index) => (
-                <Grid
-                  item
+              {card.value.map((value, index) => (
+                <Box
                   key={index}
                   sx={{
                     display: "flex",
                     flexDirection: "column",
-                    gap: 1,
                     alignItems: "center",
-                    justifyContent: "center",
                   }}
                 >
-                  <Typography variant="h3" color="primary.main">
-                    {stat.value}
-                  </Typography>
-
-                  <Typography variant="h6">{stat.name}</Typography>
-                </Grid>
+                  <Typography variant="bodySmallBold">{value.name}</Typography>
+                  <Typography variant="bodySmallBold">{value.value}</Typography>
+                </Box>
               ))}
-            </Grid>
+            </Box>
           </Card>
-        </Grid>
-        <Grid item>
-          <Card
-            sx={{
-              ...cardStyle,
-              maxHeight: 328,
-            }}
-          >
-            <BarChart />
-          </Card>
-        </Grid>
-        <Grid
-          item
+        ))}
+      </Grid>
+      <Grid item>
+        <Card>
+          <Typography variant="h6">Quick Actions</Typography>
+          <Stack>
+            <Box>
+              <AttachMoneyOutlined />
+              <Typography variant="bodySmallBold">Deposit</Typography>
+            </Box>
+            <Box></Box>
+          </Stack>
+        </Card>
+        <Card
           sx={{
+            ...cardStyle,
             display: "grid",
-            gridTemplateColumns: "repeat(1, 1fr)",
-            gridTemplateRows: "repeat(3, 1fr)",
             gap: 2,
           }}
         >
-          {cardStats.map((card, index) => (
-            <Card
-              key={index}
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography>Reports</Typography>
+
+            <Typography variant="bodySmallBold">View Reports</Typography>
+          </Stack>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <AssessmentOutlined color="primary.main" />
+            <Box>
+              <Typography variant="bodySmallBold">Yearly Reports</Typography>
+              <Typography>2022-2023</Typography>
+            </Box>
+            <MuiButton
+              variant="outlined"
+              content="Download"
               sx={{
-                ...cardStyle,
-                p: 1,
-                display: "grid",
-                gap: 1,
+                maxWidth: 120,
+                borderRadius: 10,
               }}
-            >
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                }}
-              >
-                <Typography variant="bodySmallBold">{card.name}</Typography>
-                <MuiButton
-                  variant="text"
-                  content="See All"
-                  sx={{
-                    margin: 0,
-                    padding: 0,
-                  }}
-                />
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                {card.value.map((value, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Typography variant="bodySmallBold">
-                      {value.name}
-                    </Typography>
-                    <Typography variant="bodySmallBold">
-                      {value.value}
-                    </Typography>
-                  </Box>
-                ))}
-              </Box>
-            </Card>
-          ))}
-        </Grid>
+            />{" "}
+          </Stack>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <AssessmentOutlined />
+            <Box>
+              <Typography variant="bodySmallBold">Monthly Reports</Typography>
+              <Typography>Oct-Nov</Typography>
+            </Box>
+
+            <MuiButton
+              variant="outlined"
+              content="Download"
+              sx={{
+                maxWidth: 120,
+                borderRadius: 10,
+              }}
+            />
+          </Stack>
+        </Card>
       </Grid>
-    </Box>
+      <Grid item>
+        <Card
+          sx={{
+            ...cardStyle,
+            display: "grid",
+            gap: 2,
+            alignItems: "center",
+          }}
+        >
+          <Typography>Cashflow</Typography>
+
+          <DoughnutChart />
+        </Card>
+      </Grid>
+    </Grid>
   );
 });
 

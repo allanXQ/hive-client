@@ -4,7 +4,7 @@ import "chart.js/auto";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { Box, Typography } from "@mui/material";
 import * as colors from "@mui/material/colors";
-import { Bar } from "react-chartjs-2";
+import { Bar, Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -15,45 +15,31 @@ import {
   Legend,
 } from "chart.js";
 import { useTheme } from "@mui/material";
+import "chart.js/auto";
 
-const Contributions = () => {
-  const colorNames = [
-    "red",
-    "pink",
-    "purple",
-    "deepPurple",
-    "indigo",
-    "blue",
-    "lightBlue",
-    "cyan",
-    "teal",
-    "green",
-    "lightGreen",
-    "lime",
-    "yellow",
-    "amber",
-    "orange",
-    "deepOrange",
-    "brown",
-    "grey",
-    "blueGrey",
-  ];
-
-  const getRandomColor = (colorType) => {
-    let colorIndex = Math.floor(Math.random() * colorNames.length);
-    let colorName = colorNames[colorIndex];
-    return colors[colorName][colorType];
-  };
-
-  const backgroundColors = colorNames.map((name) => getRandomColor(500));
-
+const DoughnutChart = () => {
   const data = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [
       {
+        label: "# of Votes",
         data: [12, 19, 3, 5, 2, 3],
-        backgroundColor: backgroundColors,
-        borderColor: backgroundColors,
+        backgroundColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
         borderWidth: 1,
       },
     ],
@@ -74,38 +60,24 @@ const Contributions = () => {
           return label + "\n" + value;
         },
       },
-      // legend: {
-      //   display: false,
-      // },
+      legend: {
+        display: false,
+      },
     },
   };
 
   return (
-    <Box
-      sx={{
-        // padding: 0,
-        // margin: 0,
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 2,
-      }}
-    >
-      <Typography variant="h6">Contributions</Typography>
-      <Box
-        sx={{
-          width: "15vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Pie data={data} options={options} plugins={[ChartDataLabels]} />;
-      </Box>
-    </Box>
+    <Doughnut
+      data={data}
+      options={options}
+      plugins={[ChartDataLabels]}
+      width={300}
+      height={300}
+    />
   );
 };
+
+export default DoughnutChart;
 
 ChartJS.register(
   CategoryScale,
@@ -159,4 +131,4 @@ const BarChart = () => {
   );
 };
 
-export { Contributions, BarChart };
+export { DoughnutChart, BarChart };
