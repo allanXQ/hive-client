@@ -1,45 +1,33 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { clearError, selectError } from "redux/features/app/error";
+import { selectFeedback } from "redux/features/app";
 
 const { Snackbar, Alert } = require("@mui/material");
-const { useSelector, useDispatch } = require("react-redux");
+const { useSelector } = require("react-redux");
 
-const MessageModal = ({ type, message }) => {
-  const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const errorParam = queryParams.get("error") || queryParams.get("message");
-
-  const dispatch = useDispatch();
-  const error = useSelector(selectError);
+const MessageModal = () => {
+  const feedback = useSelector(selectFeedback);
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (error?.message || errorParam) {
+    if (feedback?.message) {
       setIsOpen(true);
     }
-  }, [error]);
+  }, [feedback]);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
     setIsOpen(false);
-    setTimeout(() => {
-      errorParam &&
-        queryParams.delete("error") &&
-        queryParams.delete("message");
-      dispatch(clearError());
-    }, 1000);
   };
   return (
-    <Snackbar open={isOpen} autoHideDuration={6000} onClose={handleClose}>
+    <Snackbar open={isOpen} autoHideDuration={3000} onClose={handleClose}>
       <Alert
         onClose={handleClose}
-        severity={error?.type || "error"}
+        severity={feedback?.type || "error"}
         sx={{ width: "100%" }}
       >
-        {error?.message || errorParam}
+        {feedback?.message}
       </Alert>
     </Snackbar>
   );

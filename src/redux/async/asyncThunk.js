@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { reportError } from "redux/features/app/error";
+import { reportFeedback } from "redux/features/app";
 import axiosInstance from "utils/axiosInstance";
 
 export const apiCall = createAsyncThunk(
@@ -14,7 +14,7 @@ export const apiCall = createAsyncThunk(
       });
       if (response.status >= 400) {
         const errorMsg = response.data.message;
-        thunkAPI.dispatch(reportError({ message: errorMsg, type: "error" }));
+        thunkAPI.dispatch(reportFeedback({ message: errorMsg, type: "error" }));
         return thunkAPI.rejectWithValue({
           error: errorMsg,
           status: response?.status,
@@ -26,14 +26,14 @@ export const apiCall = createAsyncThunk(
         !response?.data?.payload
       ) {
         thunkAPI.dispatch(
-          reportError({ message: response?.data?.message, type: "success" })
+          reportFeedback({ message: response?.data?.message, type: "success" })
         );
       }
 
       return { data: response?.data?.payload, slice };
     } catch (error) {
       const errorMsg = error.response?.data?.message || error.message;
-      thunkAPI.dispatch(reportError({ message: errorMsg, type: "error" }));
+      thunkAPI.dispatch(reportFeedback({ message: errorMsg, type: "error" }));
       return thunkAPI.rejectWithValue({
         error: errorMsg,
         slice,
