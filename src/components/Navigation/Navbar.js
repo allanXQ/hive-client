@@ -114,7 +114,7 @@ function ResponsiveDrawer(props) {
     {
       name: "Memberships",
       icon: <PeopleAltOutlined sx={iconStyle} />,
-      path: "/memberships",
+      path: "/memberships/home",
     },
     {
       name: "Loan Calculator",
@@ -254,11 +254,7 @@ function ResponsiveDrawer(props) {
     },
     {
       name: "Memberships",
-      path: "/memberships",
-    },
-    {
-      name: "Loan Request",
-      path: "/loan-request",
+      path: "/memberships/home",
     },
   ];
 
