@@ -2,7 +2,7 @@ import { Avatar, Box, Card, Grid, Stack, Typography } from "@mui/material";
 import React, { useMemo } from "react";
 import { MuiButton } from "components/common/Button";
 import { useSelector } from "react-redux";
-import { selectTheme } from "redux/features/app/configSlice";
+import { selectTheme } from "redux/features/app";
 import { useTheme } from "@emotion/react";
 import useUserData from "Hooks/useUserData";
 import { DoughnutChart, BarChart } from "./components/charts/contributions";

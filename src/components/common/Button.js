@@ -1,7 +1,7 @@
 import { Button, Typography, useTheme, IconButton } from "@mui/material";
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { selectTheme, updateTheme } from "redux/features/app/configSlice";
+import { selectTheme, updateTheme } from "redux/features/app";
 import { useLocation } from "react-router-dom";
 
 export const MuiButton = (props) => {

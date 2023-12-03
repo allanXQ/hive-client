@@ -2,7 +2,7 @@ import { TextField, useTheme } from "@mui/material";
 import { useField } from "formik";
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectTheme } from "redux/features/app/configSlice";
+import { selectTheme } from "redux/features/app";
 
 const MUITextField = ({ label, defaultValue, sx: customSx, ...props }) => {
   const theme = useTheme();

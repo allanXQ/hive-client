@@ -3,7 +3,7 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectTheme } from "redux/features/app/configSlice";
+import { selectTheme } from "redux/features/app";
 
 const StyledDataGrid = styled(DataGrid)(({ theme, currentTheme }) => ({
   // [theme.breakpoints.down("sm")]: {

@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { selectTheme } from "redux/features/app/configSlice";
+import { selectTheme } from "redux/features/app";
 import { useSelector } from "react-redux";
 import { MuiButton, ThemeButton } from "components/common/Button";
 import { useTheme } from "@emotion/react";

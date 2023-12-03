@@ -1,6 +1,6 @@
 const { createTheme } = require("@mui/material");
 const { useSelector } = require("react-redux");
-const { selectTheme } = require("redux/features/app/configSlice");
+const { selectTheme } = require("redux/features/app");
 
 const useStyledTheme = () => {
   const currentTheme = useSelector(selectTheme);
