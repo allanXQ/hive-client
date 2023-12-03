@@ -67,10 +67,6 @@ export const userSlice = createSlice({
               state.isLoggedIn = true;
               state.user = action.payload.data;
               break;
-            case "auth/logout":
-              state.isLoggedIn = false;
-              state.user = initialState.user;
-              break;
             case "user/user-info":
               state.user = action.payload.data.user;
               break;
