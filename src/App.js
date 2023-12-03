@@ -3,7 +3,6 @@ import RootLayout from "components/Layouts/RootLayout";
 import Dashboard from "pages/Dashboard";
 import DepositHistory from "pages/TransactionHistory/DepositHistory";
 import Login from "pages/Auth/login";
-import GoogleCallback from "pages/Auth/googleCallback";
 import Logout from "pages/Auth/logout";
 import Register from "pages/Auth/register";
 import ForgotPassword from "pages/Auth/forgotPassword";
@@ -39,8 +38,6 @@ function App() {
         </Route>
 
         <Route path="logout" element={<Logout />} />
-        <Route path="google-callback" element={<GoogleCallback />} />
-
         <Route element={<RootLayout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
