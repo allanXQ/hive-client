@@ -4,8 +4,6 @@ import useUserData from "Hooks/useUserData";
 import MUIDataGrid from "components/common/Datagrid";
 import React, { useMemo } from "react";
 
-const overviewWidth = `calc(100vw - 320px)`;
-
 const Deposits = () => {
   const userData = useUserData();
   const { isXs, isSm, isMd, isLg, isXl } = useResponsive();
