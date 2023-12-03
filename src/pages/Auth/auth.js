@@ -5,7 +5,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { apiCall } from "redux/async/asyncThunk";
-import { loginSuccess } from "redux/features/user/userSlice";
+import { loginFailed, loginSuccess } from "redux/features/user/userSlice";
 import { firebaseAuth, firebaseAuthProvider } from "utils/firebase";
 // import GoogleSignIn from "utils/googleAuth";
 
@@ -40,7 +40,14 @@ const GoogleSignup = () => {
             slice: "userData",
           })
         ).then((res) => {
-          dispatch(
+          if (res.error) {
+            return dispatch(
+              loginFailed({
+                error: res.payload.error,
+              })
+            );
+          }
+          return dispatch(
             loginSuccess({
               ...res.payload.data,
             })
@@ -49,16 +56,11 @@ const GoogleSignup = () => {
       })
 
       .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        const credential = error.credential;
-        // ...
-
-        console.log(errorCode, errorMessage);
+        return dispatch(
+          loginFailed({
+            error: error.message,
+          })
+        );
       });
   };
 
