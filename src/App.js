@@ -19,6 +19,7 @@ import useStyledTheme from "./Hooks/useStyledTheme";
 import AboutUs from "pages/Home/Abouts";
 import Terms from "pages/Home/Terms";
 import PrivacyPolicy from "pages/Home/Privacy";
+import MembershipsHome from "pages/Memberships/home";
 
 function App() {
   const theme = useStyledTheme();
@@ -50,6 +51,9 @@ function App() {
           </Route>
           <Route path="transact">
             <Route path="deposit" element={<Deposit />} />
+          </Route>
+          <Route path="memberships">
+            <Route path="home" element={<MembershipsHome />} />
           </Route>
         </Route>
       </Routes>
