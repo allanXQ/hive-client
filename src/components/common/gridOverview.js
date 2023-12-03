@@ -3,7 +3,7 @@ import MUIDataGrid from "components/common/Datagrid";
 import React from "react";
 import { Overview } from "./overview";
 
-const MainHistory = ({ title, userInfo, columns, rows, buttons }) => {
+const GridOverview = ({ title, userInfo, columns, rows, buttons }) => {
   return (
     <Grid container spacing={5} sx={{}}>
       <Grid item xs={12} sx={{}}>
@@ -16,4 +16,4 @@ const MainHistory = ({ title, userInfo, columns, rows, buttons }) => {
   );
 };
 
-export default MainHistory;
+export default GridOverview;

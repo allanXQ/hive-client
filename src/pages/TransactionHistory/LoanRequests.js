@@ -1,8 +1,8 @@
 import { Box } from "@mui/material";
 import useUserData from "Hooks/useUserData";
 import MUIDataGrid from "components/common/Datagrid";
-import { Overview } from "./overview";
-import MainHistory from "./mainHistory";
+import { Overview } from "../../components/common/overview";
+import GridOverview from "../../components/common/gridOverview";
 
 const columns = [
   { field: "Gateway", headerName: "Gateway", width: 200 },
@@ -44,7 +44,7 @@ const LoanRequests = () => {
     : [];
 
   return (
-    <MainHistory
+    <GridOverview
       title="Loan Requests"
       columns={columns}
       rows={rows}

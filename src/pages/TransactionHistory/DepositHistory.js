@@ -1,6 +1,6 @@
 import useUserData from "Hooks/useUserData";
 import React from "react";
-import MainHistory from "./mainHistory";
+import GridOverview from "../../components/common/gridOverview";
 
 const columns = [
   { field: "Gateway", headerName: "Gateway", width: 200 },
@@ -39,7 +39,7 @@ const DepositHistory = () => {
     });
 
   return (
-    <MainHistory
+    <GridOverview
       title="Deposit History"
       columns={columns}
       rows={rows}

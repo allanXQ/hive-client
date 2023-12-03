@@ -1,8 +1,5 @@
 import { Avatar, Box, Card, Grid, Stack, Typography } from "@mui/material";
 import React, { useMemo } from "react";
-import Memberships from "./components/grids/memberships";
-import Deposits from "./components/grids/deposits";
-import Overview from "./components/overview";
 import { MuiButton } from "components/common/Button";
 import { useSelector } from "react-redux";
 import { selectTheme } from "redux/features/app/configSlice";
@@ -10,11 +7,7 @@ import { useTheme } from "@emotion/react";
 import useUserData from "Hooks/useUserData";
 import { DoughnutChart, BarChart } from "./components/charts/contributions";
 import { useNavigate } from "react-router-dom";
-import {
-  AccountBalanceOutlined,
-  AssessmentOutlined,
-  AttachMoneyOutlined,
-} from "@mui/icons-material";
+import { AssessmentOutlined, AttachMoneyOutlined } from "@mui/icons-material";
 
 const Dashboard = React.memo(() => {
   const currentTheme = useSelector(selectTheme);
