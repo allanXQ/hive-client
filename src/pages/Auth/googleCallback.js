@@ -42,7 +42,6 @@ const GoogleCallback = () => {
 
     if (userStatus === "succeeded" && userData.userId) {
       dispatch(loginSuccess({ user: userData }));
-      navigate("/dashboard");
     } else if (userStatus === "failed" && userError) {
       dispatch(loginFailed({ error: userError }));
       navigate(`/login?error=${encodeURIComponent(userError)}`);
