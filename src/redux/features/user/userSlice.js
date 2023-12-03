@@ -3,8 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   isLoggedIn: false,
   isRegistered: false,
-  status: "idle",
-  error: null,
   user: {
     userId: null,
     username: null,
@@ -82,14 +80,6 @@ export const userSlice = createSlice({
               break;
           }
         }
-      )
-      .addMatcher(
-        (action) => action.type.startsWith("api/call/rejected"),
-        (state, action) => {
-          if (action.payload.slice !== "userData") return;
-          state.status = "failed";
-          state.error = action.error.message;
-        }
       );
   },
 });
@@ -97,8 +87,6 @@ export const userSlice = createSlice({
 export const selectUser = (state) => state.user.user;
 export const selectIsLoggedIn = (state) => state.user.isLoggedIn;
 export const selectIsRegistered = (state) => state.user.isRegistered;
-export const selectUserStatus = (state) => state.user.status;
-export const selectUserError = (state) => state.user.error;
 
 export const { loginSuccess, loginFailed, updateUser, logout } =
   userSlice.actions;
