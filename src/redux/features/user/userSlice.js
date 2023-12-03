@@ -15,6 +15,8 @@ const initialState = {
     phone: null,
     balance: 0,
     deposits: [],
+    withdrawals: [],
+    chamas: [],
     loanRequests: [],
     loanRepayments: [],
     referrals: [],
