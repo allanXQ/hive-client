@@ -23,7 +23,7 @@ const Logout = () => {
       );
       localStorage.removeItem("persist:root");
       dispatch(logout());
-      navigate("/login");
+      return navigate("/login");
     }
   }, [dispatch, navigate, isLoggedIn, userData.userId]);
 

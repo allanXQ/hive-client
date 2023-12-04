@@ -97,9 +97,7 @@ function DrawerAppBar(props) {
         >
           <MuiButton
             variant="outlined"
-            onClick={() => {
-              navigate("/login");
-            }}
+            onClick={() => navigate("/login")}
             sx={{
               borderRadius: 20,
               width: 180,
@@ -109,9 +107,7 @@ function DrawerAppBar(props) {
           />
           <MuiButton
             variant="contained"
-            onClick={() => {
-              navigate("/register");
-            }}
+            onClick={() => navigate("/register")}
             sx={{
               borderRadius: 20,
               width: 180,
@@ -204,9 +200,7 @@ function DrawerAppBar(props) {
             >
               <MuiButton
                 variant="outlined"
-                onClick={() => {
-                  navigate("/login");
-                }}
+                onClick={() => navigate("/login")}
                 sx={{
                   display: { xs: "none", sm: "block" },
                   borderRadius: 20,
@@ -218,9 +212,7 @@ function DrawerAppBar(props) {
               />
               <MuiButton
                 variant="contained"
-                onClick={() => {
-                  navigate("/register");
-                }}
+                onClick={() => navigate("/register")}
                 sx={{
                   borderRadius: 20,
                   width: 140,

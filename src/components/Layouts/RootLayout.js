@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ResponsiveDrawer from "../Navigation/Navbar";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, selectUser } from "redux/features/user/userSlice";
 import { apiCall } from "redux/async/asyncThunk";
@@ -11,9 +11,11 @@ const RootLayout = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const currentPath = location.pathname;
   useEffect(() => {
+    if (!isLoggedIn) return navigate("/login");
     dispatch(
       apiCall({
         endpoint: "user/user-info",

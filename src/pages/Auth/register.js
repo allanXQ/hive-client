@@ -14,7 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/dashboard");
+      return navigate("/dashboard");
     }
     // else if (isRegistered) {
     //   navigate("/login");
