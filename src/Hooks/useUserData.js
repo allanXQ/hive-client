@@ -14,15 +14,14 @@ const useUserData = () => {
     phone,
     status,
     accountType,
-    portfolio,
-    trades,
+
     mpesaDeposits,
-    stripeDeposits,
     withdrawals,
     transfers,
     accountBalance,
     referrer,
     referrals,
+    chamas,
   } = user;
 
   const deposits = mpesaDeposits; //[...mpesaDeposits, ...stripeDeposits];
@@ -68,6 +67,7 @@ const useUserData = () => {
     accountBalance: accountBalance || 0,
     referrer,
     referrals,
+    chamas,
   };
 };
 

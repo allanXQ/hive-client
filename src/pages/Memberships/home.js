@@ -1,77 +1,59 @@
-import { Box, Card, Grid, Typography } from "@mui/material";
-import useResponsive from "Hooks/useResponsive";
+import { Box } from "@mui/material";
 import useUserData from "Hooks/useUserData";
 import { MuiButton } from "components/common/Button";
-import MUIDataGrid from "components/common/Datagrid";
 import GridOverview from "components/common/gridOverview";
-import { Outlet, useLocation } from "react-router-dom";
-
-const rows = [
-  {
-    id: 1,
-    name: "Chui",
-    admin: "Admin Admin",
-    assets: 1000,
-    members: 10,
-    upcoming: Date.now(),
-    obligations: 1000,
-  },
-  {
-    id: 2,
-    name: "Chui",
-    admin: "Admin Admin",
-    assets: 1000,
-    members: 10,
-    upcoming: Date.now(),
-    obligations: 1000,
-  },
-  {
-    id: 3,
-    name: "Chui",
-    admin: "Admin Admin",
-    assets: 1000,
-    members: 10,
-    upcoming: Date.now(),
-    obligations: 1000,
-  },
-];
+import { useNavigate } from "react-router-dom";
 
 const MembershipsHome = () => {
+  const navigate = useNavigate();
   const columns = [
-    { field: "Gateway", headerName: "Gateway", width: 200 },
-    { field: "ReferenceNumber", headerName: "Reference Number", width: 200 },
-    { field: "AccountNumber", headerName: "Account Number", width: 200 },
-    { field: "Amount", headerName: "Amount", width: 150 },
-    { field: "Status", headerName: "Status", width: 150 },
-    { field: "Date", headerName: "Date", width: 200 },
+    { field: "Name", headerName: "Name", width: 150 },
+    { field: "Admin", headerName: "Admin", width: 180 },
+    { field: "Members", headerName: "Members", width: 150 },
+    { field: "Assets", headerName: "Assets", width: 180 },
+    { field: "Type", headerName: "Type", width: 150 },
+    { field: "Event", headerName: "Next Event", width: 180 },
+    {
+      field: "Actions",
+      headerName: "Actions",
+      width: 150,
+      renderCell: (params) => (
+        <MuiButton
+          variant="contained"
+          color="primary"
+          content="View"
+          onClick={() => navigate(`/memberships/${params.row.Name}/dashboard`)}
+        />
+      ),
+    },
   ];
   const userData = useUserData();
   const buttons = [
     {
-      name: "Deposit",
-      path: "/transact/deposit",
+      name: "Create",
+      path: "/memberships/create",
     },
     {
-      name: "Withdraw",
-      path: "/transact/withdraw",
+      name: "Leave",
+      path: "/memberships/leave",
     },
   ];
 
   const rows =
-    Array.isArray(userData?.deposits) &&
-    userData.deposits.map((deposit) => {
+    Array.isArray(userData?.chamas) &&
+    userData.chamas.map((chama) => {
       return {
-        id: deposit._id,
-        Gateway: "Mpesa",
-        ReferenceNumber: deposit.mpesaRef,
-        AccountNumber: deposit.phone,
-        Amount: `KSH ${deposit.amount}`,
-        Status: deposit.status,
-        Date: deposit.createdAt,
+        id: chama.name,
+        Name: chama.name,
+        Type: chama.type,
+        Admin: chama.admin,
+        Members: chama.members,
+        Assets: chama.assets,
+        Event: chama.nextEvent,
       };
     });
-
   return (
+    //reduce width on sx
     <Box sx={{}}>
       <GridOverview
         title="Memberships"
