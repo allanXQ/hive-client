@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { selectFeedback } from "redux/features/app";
+import { clearFeedback, selectFeedback } from "redux/features/app";
 
 const { Snackbar, Alert } = require("@mui/material");
-const { useSelector } = require("react-redux");
+const { useSelector, useDispatch } = require("react-redux");
 
 const MessageModal = () => {
   const feedback = useSelector(selectFeedback);
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (feedback?.message) {
@@ -19,6 +20,7 @@ const MessageModal = () => {
       return;
     }
     setIsOpen(false);
+    dispatch(clearFeedback());
   };
   return (
     <Snackbar open={isOpen} autoHideDuration={3000} onClose={handleClose}>
