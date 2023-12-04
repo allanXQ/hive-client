@@ -46,17 +46,15 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(
-        (action) => action.type.startsWith("api/call/pending"),
-        (state, action) => {
-          state.status = "loading";
-        }
-      )
+      // .addMatcher(
+      //   (action) => action.type.startsWith("api/call/pending"),
+      //   (state, action) => {
+      //   }
+      // )
       .addMatcher(
         (action) => action.type.startsWith("api/call/fulfilled"),
         (state, action) => {
           if (action.payload.slice !== "userData") return;
-          state.status = "succeeded";
           switch (action.meta.arg.endpoint) {
             case "auth/register":
               state.isRegistered = true;
