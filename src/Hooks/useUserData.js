@@ -26,13 +26,6 @@ const useUserData = () => {
 
   const deposits = mpesaDeposits; //[...mpesaDeposits, ...stripeDeposits];
 
-  const portfolioValue = Array.isArray(portfolio)
-    ? portfolio.reduce((acc, asset) => {
-        const { price, amount } = asset;
-        return acc + price * amount;
-      }, 0)
-    : 0;
-
   const totalDeposits = Array.isArray(deposits)
     ? deposits.reduce((acc, deposit) => {
         const { amount } = deposit;
@@ -56,9 +49,7 @@ const useUserData = () => {
     phone,
     status,
     accountType,
-    portfolio,
-    portfolioValue,
-    trades,
+
     deposits,
     totalDeposits,
     withdrawals,
