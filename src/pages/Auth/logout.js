@@ -21,10 +21,10 @@ const Logout = () => {
           slice: "userData",
         })
       );
-      localStorage.removeItem("persist:root");
       dispatch(logout());
-      return navigate("/login");
     }
+    localStorage.removeItem("persist:root");
+    navigate("/login");
   }, [dispatch, navigate, isLoggedIn, userData.userId]);
 
   return <div>Logout</div>;
