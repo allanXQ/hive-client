@@ -112,9 +112,25 @@ function ResponsiveDrawer(props) {
       ],
     },
     {
-      name: "Memberships",
+      name: "Chamas",
       icon: <PeopleAltOutlined sx={iconStyle} />,
-      path: "/memberships/home",
+      submenu: [
+        {
+          name: "Home",
+          icon: <PeopleAltOutlined sx={iconStyle} />,
+          path: "/chamas/home",
+        },
+        {
+          name: "Create",
+          icon: <PeopleAltOutlined sx={iconStyle} />,
+          path: "/chamas/create",
+        },
+        {
+          name: "Join",
+          icon: <PeopleAltOutlined sx={iconStyle} />,
+          path: "/chamas/join",
+        },
+      ],
     },
     {
       name: "Loan Calculator",
@@ -137,7 +153,7 @@ function ResponsiveDrawer(props) {
           path: "/history/deposits",
         },
         {
-          name: "Contributionss",
+          name: "Contributions",
           icon: <PaidOutlined sx={iconStyle} />,
           path: "/history/contributions",
         },
@@ -253,8 +269,8 @@ function ResponsiveDrawer(props) {
       path: "/deposit",
     },
     {
-      name: "Memberships",
-      path: "/memberships/home",
+      name: "Chamas",
+      path: "/chamas/home",
     },
   ];
 
