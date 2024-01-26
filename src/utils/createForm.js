@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { apiCall } from "redux/async/asyncThunk";
 import { MuiButton } from "components/common/Button";
 import { selectUser } from "redux/features/user/userSlice";
+import MUISelectField from "components/forms/inputs/select";
 
 const CenteredBox = (props) => (
   <Box
@@ -27,6 +28,7 @@ const FIELD_COMPONENTS = {
   password: MUITextField,
   text: MUITextField,
   number: MUITextField,
+  select: MUISelectField,
   file: "input",
 };
 
@@ -100,6 +102,7 @@ const CreateForm = (formName, model, children, activeAsset) => {
                         placeholder={field.placeholder}
                         variant={model.variant}
                         disabled={field.disabled}
+                        options={field.options}
                         sx={model.sx}
                       />
                     );
