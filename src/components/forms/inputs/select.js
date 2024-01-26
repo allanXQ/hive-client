@@ -1,12 +1,13 @@
 import {
   FormControl,
+  FormHelperText,
   InputLabel,
   MenuItem,
   Select,
   useTheme,
 } from "@mui/material";
 import { useField } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectTheme } from "redux/features/app";
 
@@ -24,6 +25,7 @@ const MUISelectField = ({
     currentTheme === "light"
       ? theme.palette.bgColor.dark
       : theme.palette.bgColor.dark;
+
   return (
     <FormControl variant="outlined" focused required={props.required}>
       <InputLabel
@@ -41,9 +43,8 @@ const MUISelectField = ({
         {...field}
         {...props}
         error={meta.touched && !!meta.error}
-        helperText={meta.touched && meta.error ? meta.error : ""}
         autoComplete="off"
-        defaultValue={defaultValue}
+        value={meta.value}
         sx={{
           width: "20rem",
           color: themeColor,
@@ -82,6 +83,14 @@ const MUISelectField = ({
           );
         })}
       </Select>
+      <FormHelperText
+        sx={{
+          display: meta.touched && meta.error ? "inline" : "hidden",
+        }}
+        error={meta.touched && !!meta.error}
+      >
+        {meta.touched && meta.error}
+      </FormHelperText>
     </FormControl>
   );
 };
