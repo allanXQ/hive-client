@@ -4,10 +4,10 @@ import GridOverview from "../../components/common/gridOverview";
 
 const columns = [
   { field: "id", headerName: "id", width: 200 },
-  { field: "Chama", headerName: "Chama", width: 150 },
+  { field: "Chama", headerName: "Chama", width: 180 },
   { field: "Amount", headerName: "Amount", width: 150 },
   { field: "Month", headerName: "Month", width: 150 },
-  { field: "Description", headerName: "Description", width: 250 },
+  { field: "Description", headerName: "Description", width: 230 },
   { field: "Date", headerName: "Date", width: 200 },
 ];
 
@@ -29,7 +29,7 @@ const Contributions = () => {
     userData.contributions.map((contribution) => {
       return {
         id: contribution._id,
-        Chama: "Mpesa",
+        Chama: contribution.chama,
         Amount: `KSH ${contribution.amount}`,
         Month: "January",
         Date: contribution.contributionDate,
