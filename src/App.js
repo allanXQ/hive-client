@@ -20,6 +20,7 @@ import Terms from "pages/Home/Terms";
 import PrivacyPolicy from "pages/Home/Privacy";
 import ChamasHome from "pages/Chamas/home";
 import Contributions from "pages/TransactionHistory/contributions";
+import CreateChama from "pages/Chamas/create";
 
 function App() {
   const theme = useStyledTheme();
@@ -53,6 +54,7 @@ function App() {
           </Route>
           <Route path="chamas">
             <Route path="home" element={<ChamasHome />} />
+            <Route path="create" element={<CreateChama />} />
           </Route>
         </Route>
       </Routes>
