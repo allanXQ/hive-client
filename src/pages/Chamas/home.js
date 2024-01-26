@@ -7,12 +7,11 @@ import { useNavigate } from "react-router-dom";
 const MembershipsHome = () => {
   const navigate = useNavigate();
   const columns = [
+    { field: "id", headerName: "id", width: 200 },
     { field: "Name", headerName: "Name", width: 150 },
-    { field: "Admin", headerName: "Admin", width: 180 },
-    { field: "Members", headerName: "Members", width: 150 },
-    { field: "Assets", headerName: "Assets", width: 180 },
     { field: "Type", headerName: "Type", width: 150 },
-    { field: "Event", headerName: "Next Event", width: 180 },
+    { field: "Admin", headerName: "Admin", width: 180 },
+    { field: "Assets", headerName: "Assets", width: 180 },
     {
       field: "Actions",
       headerName: "Actions",
@@ -43,13 +42,11 @@ const MembershipsHome = () => {
     Array.isArray(userData?.memberships) &&
     userData.memberships.map((chama) => {
       return {
-        id: chama.name,
+        id: chama._id,
         Name: chama.name,
         Type: chama.type,
         Admin: chama.admin,
-        Members: chama.members,
         Assets: chama.assets,
-        Event: chama.nextEvent,
       };
     });
   return (
@@ -60,7 +57,7 @@ const MembershipsHome = () => {
         columns={columns}
         rows={rows}
         userInfo={{
-          accountBalance: userData?.accountBalance,
+          accountBalance: userData?.totalContributions,
           name: "Total Contributions",
         }}
         buttons={buttons}
