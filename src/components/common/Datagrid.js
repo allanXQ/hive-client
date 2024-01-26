@@ -6,10 +6,6 @@ import { useSelector } from "react-redux";
 import { selectTheme } from "redux/features/app";
 
 const StyledDataGrid = styled(DataGrid)(({ theme, currentTheme }) => ({
-  // [theme.breakpoints.down("sm")]: {
-  //   paddingRight: "35px",
-  // },
-
   "& .MuiDataGrid-root": {},
 
   border: "none",
