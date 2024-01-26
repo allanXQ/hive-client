@@ -1,11 +1,9 @@
 import CreateForm from "../../../utils/createForm";
-import FormStepper from "../../../utils/formStepper";
 
 const CreateChamaModel = {
   name: "CreateChama",
   endpoint: "chama/create",
   method: "post",
-  isStepper: true,
 
   fields: [
     {
@@ -19,14 +17,14 @@ const CreateChamaModel = {
       name: "type",
       type: "select",
       label: "Type",
-      options: [{ text: "test", value: "test" }],
+      options: [{ value: "test" }, { value: "test2" }],
       required: true,
     },
   ],
 };
 
 const CreateChamaForm = () => {
-  return CreateForm("CreateChama", CreateChamaModel);
+  return CreateForm("Create", CreateChamaModel);
 };
 
 export default CreateChamaForm;

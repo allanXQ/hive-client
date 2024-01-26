@@ -20,9 +20,22 @@ const MUISelectField = ({
   const theme = useTheme();
   const [field, meta] = useField(props);
   const currentTheme = useSelector(selectTheme);
+  const themeColor =
+    currentTheme === "light"
+      ? theme.palette.bgColor.dark
+      : theme.palette.bgColor.dark;
   return (
-    <FormControl sx={{ m: 1 }} variant="outlined">
-      <InputLabel id="demo-customized-select-label">{label}</InputLabel>
+    <FormControl variant="outlined" focused required={props.required}>
+      <InputLabel
+        id="demo-customized-select-label"
+        error={meta.touched && !!meta.error}
+        sx={{
+          px: 1,
+          backgroundColor: themeColor,
+        }}
+      >
+        {label}
+      </InputLabel>
       <Select
         variant={props.variant || "outlined"}
         {...field}
@@ -31,30 +44,20 @@ const MUISelectField = ({
         helperText={meta.touched && meta.error ? meta.error : ""}
         autoComplete="off"
         defaultValue={defaultValue}
-        focused
         sx={{
           width: "20rem",
-          color:
-            currentTheme === "light"
-              ? theme.palette.bgColor.dark
-              : theme.palette.bgColor.light,
+          color: themeColor,
 
           "& .MuiInputBase-input": {
             // border: "1px solid #ced4da",
-            color:
-              currentTheme === "light"
-                ? theme.palette.bgColor.dark
-                : theme.palette.bgColor.light,
+            color: themeColor,
             boxShadow: "none",
             "&:focus": {
               backgroundColor: "transparent",
             },
           },
           "& .MuiInput-input": {
-            color:
-              currentTheme === "light"
-                ? theme.palette.bgColor.dark
-                : theme.palette.bgColor.light,
+            color: themeColor,
             boxShadow: "none",
             "&:focus": {
               backgroundColor: "transparent",
@@ -64,7 +67,19 @@ const MUISelectField = ({
         }}
       >
         {options.map((option) => {
-          return <MenuItem value={option.value}>{option.text}</MenuItem>;
+          return (
+            <MenuItem
+              value={option.value}
+              sx={{
+                color:
+                  currentTheme === "light"
+                    ? theme.palette.bgColor.dark
+                    : theme.palette.bgColor.light,
+              }}
+            >
+              {option.value}
+            </MenuItem>
+          );
         })}
       </Select>
     </FormControl>
