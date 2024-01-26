@@ -40,8 +40,8 @@ const MembershipsHome = () => {
   ];
 
   const rows =
-    Array.isArray(userData?.chamas) &&
-    userData.chamas.map((chama) => {
+    Array.isArray(userData?.memberships) &&
+    userData.memberships.map((chama) => {
       return {
         id: chama.name,
         Name: chama.name,

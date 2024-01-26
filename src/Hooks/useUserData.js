@@ -21,7 +21,8 @@ const useUserData = () => {
     accountBalance,
     referrer,
     referrals,
-    chamas,
+    memberships,
+    contributions,
   } = user;
 
   const deposits = mpesaDeposits; //[...mpesaDeposits, ...stripeDeposits];
@@ -36,6 +37,13 @@ const useUserData = () => {
   const totalWithdrawals = Array.isArray(withdrawals)
     ? withdrawals.reduce((acc, withdrawal) => {
         const { amount } = withdrawal;
+        return acc + amount;
+      }, 0)
+    : 0;
+
+  const totalContributions = Array.isArray(contributions)
+    ? contributions.reduce((acc, contribution) => {
+        const { amount } = contribution;
         return acc + amount;
       }, 0)
     : 0;
@@ -58,7 +66,9 @@ const useUserData = () => {
     accountBalance: accountBalance || 0,
     referrer,
     referrals,
-    chamas,
+    memberships,
+    contributions,
+    totalContributions,
   };
 };
 
