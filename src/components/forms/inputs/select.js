@@ -34,11 +34,20 @@ const MUISelectField = ({
         error={meta.touched && !!meta.error}
         value={field.value}
         label={label}
+        displayEmpty
         sx={{
           width: "20rem",
           ...customSx,
         }}
       >
+        <MenuItem
+          sx={{
+            color: themeColor,
+          }}
+          value=""
+        >
+          None
+        </MenuItem>
         {options.map((option) => {
           return (
             <MenuItem
