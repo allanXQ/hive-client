@@ -24,44 +24,18 @@ const MUISelectField = ({
     currentTheme === "light"
       ? theme.palette.bgColor.dark
       : theme.palette.bgColor.light;
-  console.log(field, props);
   return (
-    <FormControl variant="outlined" required={props.required}>
-      <InputLabel
-        id="demo-customized-select-label"
-        error={meta.touched && !!meta.error}
-        sx={{
-          px: 1,
-          backgroundColor: themeColor,
-        }}
-      >
-        {label}
-      </InputLabel>
+    <FormControl variant="outlined" focused required={props.required}>
+      <InputLabel error={meta.touched && !!meta.error}>{label}</InputLabel>
       <Select
         variant={props.variant || "outlined"}
         {...field}
         {...props}
         error={meta.touched && !!meta.error}
         value={field.value}
+        label={label}
         sx={{
           width: "20rem",
-          color: themeColor,
-
-          "& .MuiInputBase-input": {
-            // border: "1px solid #ced4da",
-            color: themeColor,
-            boxShadow: "none",
-            "&:focus": {
-              backgroundColor: "transparent",
-            },
-          },
-          "& .MuiInput-input": {
-            color: themeColor,
-            boxShadow: "none",
-            "&:focus": {
-              backgroundColor: "transparent",
-            },
-          },
           ...customSx,
         }}
       >

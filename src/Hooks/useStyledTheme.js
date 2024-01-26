@@ -121,6 +121,13 @@ const useStyledTheme = () => {
         borderRadius: "2rem",
       },
 
+      "& .MuiToolbar-root": {
+        backgroundColor:
+          currentTheme === "light"
+            ? theme.palette.bgColor.light
+            : theme.palette.bgColor.dark,
+      },
+
       "& .MuiList-root": {
         backgroundColor:
           currentTheme === "light"
@@ -153,9 +160,45 @@ const useStyledTheme = () => {
           currentTheme === "light"
             ? theme.palette.black.main
             : theme.palette.white.main,
+        "& .MuiInputBase-input": {
+          color:
+            currentTheme === "light"
+              ? theme.palette.bgColor.dark
+              : theme.palette.bgColor.light,
+          boxShadow: "none",
+          "&:focus": {
+            backgroundColor: "transparent",
+          },
+        },
         "& .MuiSvgIcon-root": {
           color:
             currentTheme === "dark"
+              ? theme.palette.bgColor.light
+              : theme.palette.bgColor.dark,
+        },
+      },
+
+      "& .MuiInput-input": {
+        color:
+          currentTheme === "light"
+            ? theme.palette.bgColor.dark
+            : theme.palette.bgColor.light,
+        boxShadow: "none",
+        "&:focus": {
+          backgroundColor: "transparent",
+        },
+      },
+
+      "& .MuiPaper-root": {
+        backgroundColor:
+          currentTheme === "light"
+            ? theme.palette.bgColor.light
+            : theme.palette.bgColor.dark,
+      },
+      "& .MuiDrawer-root ": {
+        "& .MuiDrawer-paper": {
+          backgroundColor:
+            currentTheme === "light"
               ? theme.palette.bgColor.light
               : theme.palette.bgColor.dark,
         },

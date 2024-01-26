@@ -281,10 +281,10 @@ function ResponsiveDrawer(props) {
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
           boxShadow: "none",
-          backgroundColor:
-            currentTheme === "light"
-              ? theme.palette.bgColor.light
-              : theme.palette.bgColor.dark,
+          // backgroundColor:
+          //   currentTheme === "light"
+          //     ? theme.palette.bgColor.light
+          //     : theme.palette.bgColor.dark,
         }}
       >
         <Toolbar>
@@ -385,10 +385,6 @@ function ResponsiveDrawer(props) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
-              backgroundColor:
-                currentTheme === "light"
-                  ? theme.palette.bgColor.light
-                  : theme.palette.bgColor.dark,
             },
           }}
           open
