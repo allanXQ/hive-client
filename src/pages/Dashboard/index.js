@@ -31,7 +31,7 @@ const Dashboard = React.memo(() => {
     },
     {
       name: "Memberships",
-      value: userData?.totalWithdrawals || 0,
+      value: userData?.memberships.length || 0,
     },
   ];
 
