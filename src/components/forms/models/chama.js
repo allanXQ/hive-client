@@ -20,6 +20,44 @@ const CreateChamaModel = {
       options: [{ value: "test" }, { value: "test2" }],
       required: true,
     },
+    {
+      header: "Contributions",
+    },
+    {
+      name: "Period",
+      type: "select",
+      label: "Period",
+      options: [{ value: "test" }, { value: "test2" }],
+      required: true,
+    },
+    {
+      name: "Amount",
+      type: "number",
+      label: "Amount",
+      placeholder: "Amount",
+      required: true,
+    },
+    {
+      name: "Due Date",
+      type: "date",
+      label: "Due Date",
+      placeholder: "Due Date",
+      required: true,
+    },
+    {
+      name: "Penalty",
+      type: "number",
+      label: "Penalty",
+      placeholder: "Penalty",
+      required: true,
+    },
+    {
+      name: "PenaltyDueDate",
+      type: "date",
+      label: "Penalty Due Date",
+      placeholder: "Penalty Due Date",
+      required: true,
+    },
   ],
 };
 

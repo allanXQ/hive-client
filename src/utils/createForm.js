@@ -88,6 +88,28 @@ const CreateForm = (formName, model, children, activeAsset) => {
                 }}
               >
                 {fields.map((field, index) => {
+                  if (field.header)
+                    return (
+                      <Box
+                        sx={
+                          {
+                            // display: "flex",
+                            // flexDirection: "column",
+                            // alignItems: "center",
+                            // justifyContent: "center",
+                            // gap: 2,
+                            // width: "100%",
+                            // textAlign: "center",
+                            // fontSize: "1.5rem",
+                            // fontWeight: 700,
+                            // color: "white.main",
+                            // ...model.headerSx,
+                          }
+                        }
+                      >
+                        {field.header}
+                      </Box>
+                    );
                   const InputComponent = FIELD_COMPONENTS[field.type];
                   if (InputComponent) {
                     return (
