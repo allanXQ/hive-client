@@ -147,6 +147,19 @@ const useStyledTheme = () => {
             ? theme.palette.bgColor.light
             : theme.palette.bgColor.dark,
       },
+
+      "& .MuiInputBase-root": {
+        color:
+          currentTheme === "light"
+            ? theme.palette.black.main
+            : theme.palette.white.main,
+        "& .MuiSvgIcon-root": {
+          color:
+            currentTheme === "dark"
+              ? theme.palette.bgColor.light
+              : theme.palette.bgColor.dark,
+        },
+      },
     },
   };
 
