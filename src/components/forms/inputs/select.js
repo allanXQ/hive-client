@@ -7,7 +7,6 @@ import {
   useTheme,
 } from "@mui/material";
 import { useField } from "formik";
-import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectTheme } from "redux/features/app";
 
@@ -24,10 +23,10 @@ const MUISelectField = ({
   const themeColor =
     currentTheme === "light"
       ? theme.palette.bgColor.dark
-      : theme.palette.bgColor.dark;
-
+      : theme.palette.bgColor.light;
+  console.log(field, props);
   return (
-    <FormControl variant="outlined" focused required={props.required}>
+    <FormControl variant="outlined" required={props.required}>
       <InputLabel
         id="demo-customized-select-label"
         error={meta.touched && !!meta.error}
@@ -43,8 +42,7 @@ const MUISelectField = ({
         {...field}
         {...props}
         error={meta.touched && !!meta.error}
-        autoComplete="off"
-        value={meta.value}
+        value={field.value}
         sx={{
           width: "20rem",
           color: themeColor,
@@ -72,10 +70,7 @@ const MUISelectField = ({
             <MenuItem
               value={option.value}
               sx={{
-                color:
-                  currentTheme === "light"
-                    ? theme.palette.bgColor.dark
-                    : theme.palette.bgColor.light,
+                color: themeColor,
               }}
             >
               {option.value}
