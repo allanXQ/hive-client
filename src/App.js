@@ -19,6 +19,7 @@ import AboutUs from "pages/Home/Abouts";
 import Terms from "pages/Home/Terms";
 import PrivacyPolicy from "pages/Home/Privacy";
 import ChamasHome from "pages/Chamas/home";
+import Contributions from "pages/TransactionHistory/contributions";
 
 function App() {
   const theme = useStyledTheme();
@@ -45,6 +46,7 @@ function App() {
             <Route path="deposits" element={<DepositHistory />} />
             <Route path="loan-requests" element={<LoanRequests />} />
             <Route path="loan-payments" element={<LoanPayments />} />
+            <Route path="contributions" element={<Contributions />} />
           </Route>
           <Route path="transact">
             <Route path="deposit" element={<Deposit />} />
