@@ -3,9 +3,8 @@ import CreateForm from "../../../utils/createForm";
 
 const profileModel = {
   name: "Profile",
-  endpoint: "auth/login",
+  endpoint: "user/update",
   method: "post",
-  variant: "standard",
 };
 
 const ProfileForm = ({ children }) => {
