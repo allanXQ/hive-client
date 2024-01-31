@@ -5,7 +5,6 @@ const DepositModel = {
   name: "Deposit",
   endpoint: "user/transact/mpesa/deposit",
   method: "post",
-  isStepper: true,
 
   fields: [
     {
@@ -26,7 +25,7 @@ const DepositModel = {
 };
 
 const DepositForm = () => {
-  return CreateForm("Deposit", DepositModel);
+  return CreateForm(DepositModel);
 };
 
 export default DepositForm;

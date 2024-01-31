@@ -24,7 +24,7 @@ const WithdrawalModel = {
 };
 
 const WithdrawalForm = () => {
-  return CreateForm("Withdrawal", WithdrawalModel);
+  return CreateForm(WithdrawalModel);
 };
 
 export default WithdrawalForm;

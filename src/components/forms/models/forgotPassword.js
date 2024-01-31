@@ -4,6 +4,7 @@ const ForgotPasswordModel = {
   name: "Forgot Password",
   endpoint: "auth/forgot-password",
   method: "post",
+  button: "Submit",
 
   fields: [
     {
@@ -17,7 +18,7 @@ const ForgotPasswordModel = {
 };
 
 const ForgotPasswordForm = () => {
-  return CreateForm("ForgotPassword", ForgotPasswordModel);
+  return CreateForm(ForgotPasswordModel);
 };
 
 export default ForgotPasswordForm;

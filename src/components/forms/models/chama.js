@@ -5,6 +5,7 @@ const CreateChamaModel = {
   endpoint: "chama/create",
   method: "post",
   isStepper: true,
+  button: "Create",
 
   fields: [
     {
@@ -63,7 +64,7 @@ const CreateChamaModel = {
 };
 
 const CreateChamaForm = () => {
-  return CreateForm("Create", CreateChamaModel);
+  return CreateForm(CreateChamaModel);
 };
 
 export default CreateChamaForm;

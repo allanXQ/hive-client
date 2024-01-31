@@ -24,7 +24,7 @@ const loginModel = {
 };
 
 const LoginForm = ({ children }) => {
-  return CreateForm("Sign In", loginModel, children);
+  return CreateForm(loginModel, children);
 };
 
 export default LoginForm;

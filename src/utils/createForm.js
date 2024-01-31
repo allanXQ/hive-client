@@ -40,7 +40,7 @@ const getInitialValues = (fields) => {
   }, {});
 };
 
-const CreateForm = (formName, model, children, activeAsset) => {
+const CreateForm = (model, children, activeAsset) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const fields = model.fields;
@@ -152,7 +152,7 @@ const CreateForm = (formName, model, children, activeAsset) => {
                     color: "white.main",
                     ...model.buttonSx,
                   }}
-                  content={formName}
+                  content={model.button || model.name}
                 />
               </>
             )}
