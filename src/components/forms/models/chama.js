@@ -4,6 +4,7 @@ const CreateChamaModel = {
   name: "CreateChama",
   endpoint: "chama/create",
   method: "post",
+  isStepper: true,
 
   fields: [
     {
