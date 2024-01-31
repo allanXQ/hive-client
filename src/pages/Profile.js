@@ -1,10 +1,27 @@
 import { Avatar, Box } from "@mui/material";
+import useResponsive from "Hooks/useResponsive";
 import ProfileForm from "components/forms/models/profile";
 import React from "react";
 
 const Profile = () => {
+  const { isSm, isMd, isXl } = useResponsive();
+  const overviewWidth = isSm
+    ? "100vw"
+    : isXl
+    ? `calc(100vw - 220px)`
+    : `calc(100vw - 220px)`;
   return (
-    <Box>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "1rem",
+        height: "70vh",
+        width: overviewWidth,
+      }}
+    >
       <Box>
         <Avatar
           sx={{

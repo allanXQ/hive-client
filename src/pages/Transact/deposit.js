@@ -17,7 +17,7 @@ const Deposit = () => {
         alignItems: "center",
         justifyContent: "center",
         gap: "1rem",
-        height: "89vh",
+        height: "70vh",
         width: overviewWidth,
       }}
     >
