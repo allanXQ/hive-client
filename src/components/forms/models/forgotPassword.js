@@ -1,4 +1,4 @@
-import CreateForm from "../../../utils/createForm";
+import CreateForm from "../components/createForm";
 
 const ForgotPasswordModel = {
   name: "Forgot Password",

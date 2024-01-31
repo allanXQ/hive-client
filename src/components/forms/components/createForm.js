@@ -1,14 +1,38 @@
-import { Form, Formik } from "formik";
+import { Form, Formik, useFormikContext } from "formik";
 
-import MUITextField from "../components/forms/inputs/textField";
-import { Box } from "@mui/material";
-import getValidationSchema from "./getValidationSchema";
+import MUITextField from "../inputs/textField";
+import { Box, Input } from "@mui/material";
+import getValidationSchema from "../utils/getValidationSchema";
 import { useDispatch, useSelector } from "react-redux";
 import { apiCall } from "redux/async/asyncThunk";
 import { MuiButton } from "components/common/Button";
 import { selectUser } from "redux/features/user/userSlice";
 import MUISelectField from "components/forms/inputs/select";
 import FormStepper from "./formStepper";
+
+const FileUpload = ({ name, ...otherProps }) => {
+  const { setFieldValue } = useFormikContext();
+  const handleFileChange = (event) => {
+    const file = event.currentTarget.files[0];
+    setFieldValue(name, file); // Update Formik's state
+  };
+
+  return (
+    <label htmlFor={name}>
+      <MUITextField
+        id={name}
+        name={name}
+        type="file"
+        onChange={handleFileChange}
+        // style={{ display: "none" }}
+        {...otherProps}
+      />
+      <MuiButton variant="contained" component="span">
+        Upload
+      </MuiButton>
+    </label>
+  );
+};
 
 const CenteredBox = (props) => (
   <Box
@@ -30,7 +54,7 @@ const FIELD_COMPONENTS = {
   text: MUITextField,
   number: MUITextField,
   select: MUISelectField,
-  file: "input",
+  file: FileUpload,
 };
 
 const getInitialValues = (fields) => {

@@ -1,5 +1,5 @@
 import useUserData from "Hooks/useUserData";
-import CreateForm from "../../../utils/createForm";
+import CreateForm from "../components/createForm";
 
 const profileModel = {
   name: "Profile",
@@ -12,14 +12,14 @@ const ProfileForm = ({ children }) => {
   const userData = useUserData();
   const { profile_image, email, phone } = userData;
   profileModel.fields = [
-    {
-      name: "profile_image",
-      type: "file",
-      label: "Profile Image",
-      placeholder: "Upload your profile image",
-      required: false,
-      value: profile_image,
-    },
+    // {
+    //   name: "profile_image",
+    //   type: "file",
+    //   label: "Profile Image",
+    //   placeholder: "Upload your profile image",
+    //   required: false,
+    //   value: profile_image,
+    // },
     {
       name: "email",
       type: "email",

@@ -1,4 +1,4 @@
-import CreateForm from "../../../utils/createForm";
+import CreateForm from "../components/createForm";
 
 const CreateChamaModel = {
   name: "CreateChama",
