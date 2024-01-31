@@ -1,66 +1,24 @@
-import {
-  Avatar,
-  Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Grid,
-  Input,
-  Typography,
-} from "@mui/material";
-import useUserData from "Hooks/useUserData";
+import { Avatar, Box } from "@mui/material";
 import ProfileForm from "components/forms/models/profile";
 import React from "react";
 
 const Profile = () => {
-  const userData = useUserData();
-  const {
-    firstname,
-    lastname,
-    username,
-    googlename,
-    accountType,
-    email,
-    phone,
-    status,
-  } = userData;
-  const userAttributes = [
-    {
-      name: "First Name",
-      value: firstname,
-    },
-    {
-      name: "Last Name",
-      value: lastname,
-    },
-    {
-      name: "Account Status",
-      value: status,
-    },
-    {
-      name: "Account Type",
-      value: accountType,
-    },
-  ];
-
-  const profileModel = [{}];
-
   return (
-    <Grid container>
-      <Grid item xs={12}>
+    <Box>
+      <Box>
         <Avatar
           sx={{
-            width: 100,
-            height: 100,
+            width: 80,
+            height: 80,
             margin: "auto",
             marginBottom: "1rem",
           }}
           alt="Remy Sharp"
           src="https://mui.com/static/images/avatar/1.jpg"
         />
-        <ProfileForm></ProfileForm>
-      </Grid>
-    </Grid>
+        <ProfileForm />
+      </Box>
+    </Box>
   );
 };
 
