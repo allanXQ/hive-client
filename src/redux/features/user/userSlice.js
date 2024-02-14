@@ -72,9 +72,6 @@ export const userSlice = createSlice({
             case "user/transact/mpesa/deposit":
             case "user/transact/transfer":
               break;
-            case "user/trade/spot/buy-limit":
-            case "user/trade/spot/sell-limit":
-              break;
             default:
               break;
           }
