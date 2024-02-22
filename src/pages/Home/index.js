@@ -81,6 +81,8 @@ const Home = () => {
         justifyContent: "center",
         alignItems: "center",
         gap: theme.spacing(5),
+        width: "100vw",
+        mx: 2,
       }}
     >
       <Grid item xs={12} md={6}>

@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   AccountBalanceOutlined,
   CalculateOutlined,
@@ -41,16 +41,17 @@ import {
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectTheme } from "redux/features/app";
-import { ThemeButton } from "components/common/Button";
+import { MuiButton, ThemeButton } from "components/common/Button";
 import { useTheme } from "@emotion/react";
 import useUserData from "Hooks/useUserData";
 
 const drawerWidth = 200;
 
 function ResponsiveDrawer(props) {
-  const { window } = props;
+  const { window, isHome } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSubMenu, setOpenSubMenu] = useState(null);
+  const navigate = useNavigate();
 
   const handleSubMenuToggle = (index) => {
     setOpenSubMenu(openSubMenu === index ? null : index);
@@ -64,7 +65,7 @@ function ResponsiveDrawer(props) {
   const userData = useUserData();
 
   const currentpath = useLocation().pathname;
-  const navlinks = [
+  const dashSidelinks = [
     {
       name: "Dashboard",
       icon: <DashboardOutlined />,
@@ -167,6 +168,43 @@ function ResponsiveDrawer(props) {
     },
   ];
 
+  const dashLinks = [
+    {
+      name: "Dashboard",
+      path: "/dashboard",
+    },
+    {
+      name: "Deposit",
+      path: "/deposit",
+    },
+    {
+      name: "Chamas",
+      path: "/chamas/home",
+    },
+  ];
+
+  const homeLinks = [
+    {
+      name: "Home",
+      path: "/home",
+    },
+    {
+      name: "About Us",
+      path: "/about",
+    },
+    {
+      name: "Terms",
+      path: "/terms",
+    },
+    {
+      name: "Privacy",
+      path: "/privacy",
+    },
+  ];
+
+  const topBarLinks = isHome ? homeLinks : dashLinks;
+  const navlinks = isHome ? homeLinks : dashSidelinks;
+
   const drawer = (
     <Box>
       <Toolbar
@@ -193,13 +231,15 @@ function ResponsiveDrawer(props) {
               component={!item.submenu && Link}
               to={item.path}
             >
-              <ListItemIcon
-                sx={{
-                  minWidth: 40,
-                }}
-              >
-                {item.icon}
-              </ListItemIcon>
+              {!isHome && (
+                <ListItemIcon
+                  sx={{
+                    minWidth: 40,
+                  }}
+                >
+                  {item.icon}
+                </ListItemIcon>
+              )}
               <ListItemText>
                 <Typography variant="bodySmall">{item.name}</Typography>
               </ListItemText>
@@ -242,6 +282,20 @@ function ResponsiveDrawer(props) {
             )}
           </div>
         ))}
+        {isHome && (
+          <>
+            <ListItem button component={Link} to="/login">
+              <ListItemText>
+                <Typography variant="bodySmall">Sign In </Typography>
+              </ListItemText>
+            </ListItem>
+            <ListItem button component={Link} to="/register">
+              <ListItemText>
+                <Typography variant="bodySmall">Sign Up </Typography>
+              </ListItemText>
+            </ListItem>
+          </>
+        )}
       </List>
     </Box>
   );
@@ -249,42 +303,19 @@ function ResponsiveDrawer(props) {
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
-  const topLinks = [
-    {
-      name: "Dashboard",
-      path: "/dashboard",
-    },
-    {
-      name: "Deposit",
-      path: "/deposit",
-    },
-    {
-      name: "Chamas",
-      path: "/chamas/home",
-    },
-  ];
-
   return (
     <Box
       sx={{
         display: "grid",
-        backgroundColor:
-          currentTheme === "light"
-            ? theme.palette.bgColor.light
-            : theme.palette.bgColor.dark,
       }}
     >
       <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: isHome ? "100vw" : { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: isHome ? 0 : { sm: `${drawerWidth}px` },
           boxShadow: "none",
-          // backgroundColor:
-          //   currentTheme === "light"
-          //     ? theme.palette.bgColor.light
-          //     : theme.palette.bgColor.dark,
         }}
       >
         <Toolbar>
@@ -313,7 +344,7 @@ function ResponsiveDrawer(props) {
                 width: "100%",
               }}
             >
-              {topLinks.map((item, index) => (
+              {topBarLinks.map((item, index) => (
                 <Typography
                   variant="h6"
                   component={Link}
@@ -356,7 +387,6 @@ function ResponsiveDrawer(props) {
         sx={{
           width: { sm: drawerWidth },
           flexShrink: { sm: 0 },
-          display: currentpath.includes("trade/spot") && "none",
         }}
         aria-label="mailbox folders"
       >
@@ -378,27 +408,31 @@ function ResponsiveDrawer(props) {
         >
           {drawer}
         </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: "none", sm: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-          open
-        >
-          {drawer}
-        </Drawer>
+        {!isHome && (
+          <Drawer
+            variant="permanent"
+            sx={{
+              display: { xs: "none", sm: "block" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+            open
+          >
+            {drawer}
+          </Drawer>
+        )}
       </Box>
       <Box
         component="main"
         sx={{
           overflowX: "hidden",
           display: "grid",
-          width: { xs: "100vw", sm: `calc(100vw - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: isHome
+            ? "100vw"
+            : { xs: "100vw", sm: `calc(100vw - ${drawerWidth}px)` },
+          ml: isHome ? 0 : { sm: `${drawerWidth}px` },
           gap: 2,
           alignItems: "center",
           justifyContent: "center",
@@ -407,7 +441,7 @@ function ResponsiveDrawer(props) {
         <Toolbar sx={{}} />
         <Box
           sx={{
-            width: { xs: "100vw", sm: `calc(100vw - ${drawerWidth + 50}px)` },
+            // width: { xs: "100vw", sm: `calc(100vw - ${drawerWidth + 50}px)` },
             px: { xs: 2, sm: 0 },
           }}
         >
