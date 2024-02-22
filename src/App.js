@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import RootLayout from "components/Layouts/RootLayout";
+import HomeLayout from "components/Layouts/HomeLayout";
 import Dashboard from "pages/Dashboard";
 import DepositHistory from "pages/TransactionHistory/DepositHistory";
 import Login from "pages/Auth/login";
@@ -9,7 +10,6 @@ import ForgotPassword from "pages/Auth/forgotPassword";
 import Deposit from "pages/Transact/deposit";
 import MessageModal from "components/messages";
 import Home from "pages/Home";
-import HomeLayout from "components/Layouts/HomeLayout";
 import LoanRequests from "pages/TransactionHistory/LoanRequests";
 import LoanPayments from "pages/TransactionHistory/LoanPayments";
 import Profile from "pages/Profile";
@@ -30,7 +30,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route element={<HomeLayout />}>
-          <Route path="home" element={<div>Home</div>} />
+          <Route path="home" element={<Home />} />
           <Route path="about" element={<div>Home</div>} />
           <Route path="terms" element={<div>Home</div>} />
           <Route path="privacy" element={<div>Home</div>} />
